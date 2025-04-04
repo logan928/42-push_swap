@@ -243,6 +243,10 @@ void optimize_a(t_list **a, t_list **b)
         total_count = ccl_count(*tail);
 	printf("%d....tail count%d\n", total_count, (*tail) -> tail_count);
 
+		*tail = cll_add_at_end(*tail, 57);
+        total_count = ccl_count(*tail);
+	printf("%d....tail count%d\n", total_count, (*tail) -> tail_count);
+
 	*tail = cll_add_at_end(*tail, -8);
         total_count = ccl_count(*tail);
 	printf("%d....tail count%d\n", total_count, (*tail) -> tail_count);
