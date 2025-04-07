@@ -120,7 +120,7 @@ int    find_insert_pos(t_list *tail, int inst_val) //Apr 2nd WIP
 		temp = temp -> next;
 		count++;
 		stack_size--;
-		printf("tail: %d stack:%d count:%d \n", tail -> tail_count, stack_size, count);
+	//printf("tail: %d stack:%d count:%d \n", tail -> tail_count, stack_size, count);
         }
         return (count);
 }
