@@ -24,10 +24,15 @@ int	push_top(t_list **dest, t_list **src)
 	*dest = cll_add_at_begin (*dest, *top_value);
 	if (!(*dest))
 		return (0);
+        
+               // printf("success %d", *top_value);
+
 	*src = cll_delete_top (*src);
        if (!(*src))
        		return (0);
 	//printf("%s\n",print_str);//change
+
+        
 	
  	return (1);	
 }// Check for empty/NULL guards before pushing. Also what if the list is already empty check?

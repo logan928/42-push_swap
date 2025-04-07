@@ -139,7 +139,10 @@ void print_list(t_list *tail)//delete or comment when submitting. written only f
 
 	temp = tail -> next;
 	if (!temp || !(temp -> content))
+	{
+		printf("null detected \n");
 		return;
+	}
 	do
 	{
 		printf("%d ", temp -> content);

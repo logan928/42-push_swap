@@ -5,6 +5,7 @@
 void optimize_a(t_list **a, t_list **b);
 void populate_b(t_list **a, t_list **b);
 void sequence_a(t_list **a, t_list **b);
+void optimize_b(t_list **a, t_list **b);
 
 
 // if it is 3 numbers write a function that does 1. swap 2. rotate or rev_rotate depending on the position of the highest value. then loop. I believe this will work even without using teh second list for when the count is 4. 
@@ -15,17 +16,41 @@ int     sort_algo(t_list **tail)
         int     success;
         int     push;
         int     total_count;
-		int	a_min;
-		int	a_max;
+		int		a_min;
+		int		a_max;
 		int		min_position;
+		int max_p;
+		int min_p;
+		int		rotate;
 
-        tail_b = (t_list *)(malloc(sizeof(t_list)));
+
+		tail_b = (t_list *)(malloc(sizeof(t_list)));
         if (!tail_b)
                 return (0);
         tail_b -> next = NULL;
 
-	populate_b(tail, &tail_b);
-	if ((*tail) -> tail_count > 0)
+		populate_b(tail, &tail_b);
+		total_count = (*tail) -> tail_count;
+
+
+	//make a only have 1 elements
+	if (total_count > 1)
+	{
+		while (total_count >1)
+		{
+			success = push_b(&tail_b, tail);
+			if (!success)
+			{
+				printf("another error \n");
+				 return (0);
+			}
+			total_count--;
+		}
+		
+	}
+		
+
+	if ((*tail) -> tail_count > 0)// no need for this. since there is only one element. 
 	{
 		a_min = (*tail) -> next -> content;
 		a_max = (*tail) -> content;
@@ -35,11 +60,72 @@ int     sort_algo(t_list **tail)
 		a_min = (*tail) -> content;
 		a_max = (*tail) -> content;
 	}
-	
-	//printf("tail_min1: %d tail_max: %d\n", a_min, a_max);// remove
+	//print_list(*tail);
+
+
+//printf("tail_min1: %d tail_max: %d\n", a_min, a_max);// remove
 	
 	total_count = (tail_b) -> tail_count;
+	//printf("tail_content ..%d \n", tail_b -> tail_count	);
 	//printf(".....count b %d \n", total_count);
+
+
+
+
+	min_p = 1;
+	max_p = 1;
+
+
+
+
+	print_list(tail_b);
+
+	//printf("%d b count:\n", tail_b -> tail_count);
+	
+	//printf ("max...%d min....%d \n", max_p, min_p);
+
+	//find min and push to a. 
+//need to optimize this ... not checking the closest path for simplicity 
+
+
+//######################################################################################3
+	
+	//
+
+while (tail_b -> tail_count > 1)
+{
+	find_min_max_pos(tail_b, &min_p, &max_p);
+
+	rotate = rotate_count(total_count, max_p, min_p);
+
+	if (rotate > 1)
+	{
+		while (rotate > 1)
+		{
+			rotate_b(tail, &tail_b);
+			rotate--;
+		}
+	}
+	else
+	{
+		rotate *= -1;
+		while(rotate + 1 > 0)
+		{
+			rev_rotate_b(tail, &tail_b);
+		}
+	}
+	push_a(tail, &tail_b);
+
+
+}
+	
+if (tail_b -> tail_count == 1)
+	push_a(tail, &tail_b);
+
+
+	//print_list(tail_b);
+	
+	/*
 	
 	while (total_count > 0)
 	{
@@ -69,7 +155,9 @@ int     sort_algo(t_list **tail)
 		}
 		
 	}
-//print_list(*tail);
+
+	*/
+	print_list(*tail);
 	delete_list(&tail_b);//position of delet_list and following delete tail needs to be checked.
         if(tail_b)
         {
@@ -80,6 +168,24 @@ int     sort_algo(t_list **tail)
 
 }
 
+int rotate_count(int total_count, int max_p, int min_p)
+{
+	int rev_max_p;
+	int rev_min_p;
+
+	rev_max_p = total_count - max_p;
+	rev_min_p = total_count - min_p;
+
+	if (max_p < min_p && max_p < rev_max_p && max_p < rev_min_p)
+		return (max_p);
+	else if (min_p < max_p && min_p < rev_max_p && min_p < rev_min_p)
+		return (min_p);
+	else if (rev_max_p < max_p && rev_max_p < min_p && rev_max_p < rev_min_p)
+		return (rev_max_p * -1);
+	else if (rev_min_p < max_p && rev_min_p < min_p && rev_min_p < rev_max_p)
+		return (rev_min_p * -1);
+
+}
 
 void populate_b(t_list **a, t_list **b)
 {
@@ -97,6 +203,7 @@ do{
                 while (push > 0)
                 {
                         i = push_b (b, a);
+						//optimize_b(a, b);
 			//optimize_b (a, b); this will not optimize  to counter cases of 3, 4, 5
 			//Opportunity to reduce instructions by optimising b after each push. 
 			//only optimize not the exact insertion. 
@@ -114,6 +221,7 @@ do{
 }while (total_count != push);
 
 }
+
 
 int	insert_back(t_list **a, t_list **b, int *a_min, int *a_max)//WIP 03rd April
 {
@@ -221,36 +329,42 @@ void optimize_a(t_list **a, t_list **b)
 	int	last;
 
 	success = 0;
-	first = (*a) -> next -> content;
-	second = (*a) -> next -> next -> content;
-	last = (*a) -> content;
-	
-	//all branches include a swap. might as well move it to the top
-
-	//printf("%d %d %d \n", first, second, last);
 	do 
 	{
 		success = 0;
-		if (last > first && last > second)
-			success += swap_a(a, b);
-		else if (last < first && last < second)
+		first = (*a) -> next -> content;
+		second = (*a) -> next -> next -> content;
+		last = (*a) -> content;
+		//printf("%d %d %d \n", first, second, last);
+		success += swap_a(a, b);
+		if (last < first || last < second)
 		{
-			success += swap_a(a, b);
-			success += rev_rotate_a(a, b, 0);	
-		}
-		else if (first > second && first > last)
-		{
-			success += swap_a(a, b); //redo force rev_rotate and then swap. 
 			success += rev_rotate_a(a, b, 0);
 		}
-		else 
-		{
-			success += swap_a(a, b);
-			success += rev_rotate_a(a, b, 0);
-		}
+		
 	}while (success != 0);
 }
 
+void optimize_b(t_list **a, t_list **b) // Think about it
+{
+	int success;
+	int	first;
+	int	second;
+	int	last;
+
+	success = 0;
+	do 
+	{
+		success = 0;
+		first = (*b) -> next -> content;
+		second = (*b) -> next -> next -> content;
+		last = (*b) -> content;
+		success += swap_b(a, b);
+		//if (last < first || last < second)
+			success += rev_rotate_b(a, b);
+		
+	}while (success != 0);
+}
 /*
  
 	*tail = cll_add_at_end(*tail, 57);
