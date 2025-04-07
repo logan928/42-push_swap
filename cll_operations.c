@@ -144,30 +144,28 @@ int search_value(t_list *tail, int num)
 	return (0);
 }
 
-int find_min_max_pos(t_list *tail, int *min_pos, int *max_pos)
+int find_min_max_pos(t_list *tail, int *min_pos, int *max_pos, int *max, int *min)
 {
 	int count;
 	t_list *temp;
-	int	max;
-	int min;
 	
 	if(!tail || !(tail -> next))
 		return (0);
 	temp = tail -> next;
 	count = 1;
-	max = temp -> content;
-	min = temp -> content;
+	*max = temp -> content;
+	*min = temp -> content;
 	
 	do
        	{
-		if (temp -> content > max)
+		if (temp -> content > *max)
 		{
-			max = temp -> content;
+			*max = temp -> content;
 			*max_pos = count;
 		}
-		else if (temp -> content < min)
+		else if (temp -> content < *min)
 		{
-			min = temp -> content;
+			*min = temp -> content;
 			*min_pos = count;
 		}
 		temp = temp -> next;

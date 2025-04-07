@@ -51,7 +51,7 @@ int     ccl_count(t_list *tail);
 int search_value(t_list *tail, int num);
 int     push_count(t_list *tail, int mul);
 int    find_insert_pos(t_list *tail, int inst_val);
-int find_min_max_pos(t_list *tail, int *min_pos, int *max_pos);
+int find_min_max_pos(t_list *tail, int *min_pos, int *max_pos, int *max_b, int *min_b);
 
 int     sort_algo(t_list **tail);
 int     insert_back(t_list **a, t_list **b, int *a_min, int *a_max);

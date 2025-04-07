@@ -6,6 +6,7 @@ void optimize_a(t_list **a, t_list **b);
 void populate_b(t_list **a, t_list **b);
 void sequence_a(t_list **a, t_list **b);
 void optimize_b(t_list **a, t_list **b);
+int rotate_count(int total_count, int max_p, int min_p);
 
 
 // if it is 3 numbers write a function that does 1. swap 2. rotate or rev_rotate depending on the position of the highest value. then loop. I believe this will work even without using teh second list for when the count is 4. 
@@ -21,6 +22,8 @@ int     sort_algo(t_list **tail)
 		int		min_position;
 		int max_p;
 		int min_p;
+		int		max_b;
+		int		min_b;
 		int		rotate;
 
 
@@ -87,14 +90,14 @@ int     sort_algo(t_list **tail)
 	//find min and push to a. 
 //need to optimize this ... not checking the closest path for simplicity 
 
-
+// the minimum value needs to be under the largest value
 //######################################################################################3
 	
 	//
 
 while (tail_b -> tail_count > 1)
 {
-	find_min_max_pos(tail_b, &min_p, &max_p);
+	find_min_max_pos(tail_b, &min_p, &max_p, &max_b, &min_b);
 
 	rotate = rotate_count(total_count, max_p, min_p);
 
@@ -115,6 +118,8 @@ while (tail_b -> tail_count > 1)
 		}
 	}
 	push_a(tail, &tail_b);
+	if ((*tail) -> next -> content == min_b)
+		success += rotate_a(tail, &tail_b, 0);
 
 
 }
@@ -184,6 +189,8 @@ int rotate_count(int total_count, int max_p, int min_p)
 		return (rev_max_p * -1);
 	else if (rev_min_p < max_p && rev_min_p < min_p && rev_min_p < rev_max_p)
 		return (rev_min_p * -1);
+	else
+		return (0); // what does this do??
 
 }
 
