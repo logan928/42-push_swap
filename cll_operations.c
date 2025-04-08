@@ -155,6 +155,8 @@ int find_min_max_pos(t_list *tail, int *min_pos, int *max_pos, int *max, int *mi
 	count = 1;
 	*max = temp -> content;
 	*min = temp -> content;
+	*max_pos = 1;
+	*min_pos = 1;
 	
 	do
        	{
@@ -172,4 +174,23 @@ int find_min_max_pos(t_list *tail, int *min_pos, int *max_pos, int *max, int *mi
 		count++;
 	}while (temp -> next != tail -> next -> next);
 	return (1);
+}
+
+double get_mean(t_list *tail)
+{
+	int count;
+	t_list *temp;
+	int total;
+
+	total = 0;
+	if(!tail || !(tail -> next))
+		return (0);
+	temp = tail -> next;
+	count = 1;
+	
+	do
+       	{
+			total += temp -> content;
+	}while (temp -> next != tail -> next -> next);
+	return ((double)((double)total / ((double)(tail -> tail_count))));
 }
