@@ -40,9 +40,9 @@ int     push_b (t_list **dest, t_list **src);
 int     swap_a(t_list **a, t_list **b);
 int     swap_b(t_list **a, t_list **b);
 int     rotate_a(t_list **a, t_list **b, int forced);
-int     rotate_b(t_list **a, t_list **b);
+int     rotate_b(t_list **a, t_list **b, int forced);
 int     rev_rotate_a(t_list **a, t_list **b, int forced);
-int     rev_rotate_b(t_list **a, t_list **b);
+int     rev_rotate_b(t_list **a, t_list **b, int forced);
 
 void    swap_start(t_list **tail);
 t_list *rotate_list (t_list *tail);

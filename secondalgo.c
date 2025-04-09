@@ -25,6 +25,11 @@ int     sort_algo(t_list **tail)
 		int		max_b;
 		int		min_b;
 		int		rotate;
+		int middle; 
+		int max_pa;
+		int min_pa;
+		int		max_a;
+		int		min_a;
 
 
 		tail_b = (t_list *)(malloc(sizeof(t_list)));
@@ -90,13 +95,15 @@ while (tail_b -> tail_count > 1)
 {
 	find_min_max_pos(tail_b, &min_p, &max_p, &max_b, &min_b);
 
+
 	rotate = rotate_count(total_count, max_p, min_p);
+
 
 	if (rotate > 1)
 	{
 		while (rotate > 1)
 		{
-			rotate_b(tail, &tail_b);
+			rotate_b(tail, &tail_b, 1);
 			rotate--;
 		}
 	}
@@ -105,20 +112,23 @@ while (tail_b -> tail_count > 1)
 		rotate *= -1;
 		while(rotate + 1 > 0)
 		{
-			rev_rotate_b(tail, &tail_b);
+			rev_rotate_b(tail, &tail_b, 1);
+			rotate--;
 		}
 	}
 	push_a(tail, &tail_b);
 	if ((*tail) -> next -> content == min_b)
-		success += rotate_a(tail, &tail_b, 0);
-
+		success += rotate_a(tail, &tail_b, 1);
 
 }
 */	
 if (tail_b -> tail_count == 1)
 	push_a(tail, &tail_b);
 
+
 //*****************this is the final rotation to get min value which is now in the middle to the top */	
+
+
 	/*
 	
 	while (total_count > 0)
@@ -187,15 +197,26 @@ void populate_b(t_list **a, t_list **b)
 {
 	int total_count;
 	int push;
+	int max_pa;
+		int min_pa;
+		int		max_a;
+		int		min_a;
+		double middle;
+	//double mean;
 
 do{
-		optimize_a(a, b);// check for successful changes and loop. work the middle value problem with forced rotation
+		//optimize_a(a, b);// check for successful changes and loop. work the middle value problem with forced rotation
+		find_min_max_pos(*a, &min_pa, &max_pa, &max_a, &min_a);
         total_count = (*a) -> tail_count;
         push =  push_count(*a, 1);
-	
+		middle = (max_a + min_a)/2;
+		//mean = get_mean(*a);
+		//printf("...%lf\n", middle);
+
+	/*
         if (push != total_count)
         {
-                int i = 0;
+        		int i = 0;
                 while (push > 0)
                 {
                         i = push_b (b, a);
@@ -213,8 +234,17 @@ do{
                                 break;
                         push--;
                	}
-        }
-}while (total_count != push);
+				
+		}
+		*/
+		if ((*a) -> next -> content < middle)
+			push_b(b,a);
+		else
+			rotate_a(a, b, 1);
+
+	//}while (total_count != push);
+	print_list(*a);
+}while (total_count > 3);
 
 }
 
@@ -335,7 +365,7 @@ void optimize_a(t_list **a, t_list **b)
 		success += swap_a(a, b);
 		if (last < first || last < second)
 		{
-			success += rev_rotate_a(a, b, 0);
+			//success += rev_rotate_a(a, b, 0);
 		}
 		
 	}while (success != 0);
@@ -357,7 +387,7 @@ void optimize_b(t_list **a, t_list **b) // Think about it
 		last = (*b) -> content;
 		success += swap_b(a, b);
 		//if (last < first || last < second)
-			success += rev_rotate_b(a, b);
+			success += rev_rotate_b(a, b, 0);
 		
 	}while (success != 0);
 }

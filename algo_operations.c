@@ -118,7 +118,7 @@ int     rotate_a(t_list **a, t_list **b, int forced)
         return (0);
 }
 
-int     rotate_b(t_list **a, t_list **b)
+int     rotate_b(t_list **a, t_list **b, int forced)
 {
 /*        if (compare_top_bottom(*a) && !compare_top_bottom(*b))
         {
@@ -127,8 +127,14 @@ int     rotate_b(t_list **a, t_list **b)
 		printf("%s\n", "rr");//chagne
                 return (1);
         }
-*/
-        if (!compare_top_bottom(*b))
+*/      
+        if (ccl_count(*b) > 1 &&  forced)
+        {
+                *b = rotate_list(*b);
+                printf("%s\n", "rb");//change
+                return (1);
+        }
+        else if (!compare_top_bottom(*b))
         {
 		*b = rotate_list(*b);
                 printf("%s\n", "rb");//change
@@ -162,7 +168,7 @@ int     rev_rotate_a(t_list **a, t_list **b, int forced)
         return (0);
 }
 
-int     rev_rotate_b(t_list **a, t_list **b)
+int     rev_rotate_b(t_list **a, t_list **b, int forced)
 {
 /*        if (ccl_count(*a) > 1 && compare_top_bottom(*a) && ccl_count(*b) > 1 && !compare_top_bottom(*b))
         {
@@ -172,7 +178,13 @@ int     rev_rotate_b(t_list **a, t_list **b)
                 return (1);
         }
 */
-        if (ccl_count(*b) > 1 && !compare_top_bottom(*b))
+        if (ccl_count(*b) > 1 &&  forced)
+        {
+                *b = rev_rotate_list(*b);
+                printf("%s\n", "rrb");//change
+                return (1);
+        }
+        else if (ccl_count(*b) > 1 && !compare_top_bottom(*b))
         {
 		*b = rev_rotate_list(*b);
                 printf("%s\n", "rrb");//change

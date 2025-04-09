@@ -155,6 +155,8 @@ int find_min_max_pos(t_list *tail, int *min_pos, int *max_pos, int *max, int *mi
 	count = 1;
 	*max = temp -> content;
 	*min = temp -> content;
+	*max_pos = 1;
+	*min_pos = 1;
 	
 	do
        	{
