@@ -192,9 +192,8 @@ int get_rotate_count(t_list *list)
 		return (0);
 
 	new_end = list -> tail_count;
-	min = __INT_MAX__; // this way we ensure the initialization will be at least a min value
-	//min = get_next_min(list, 1, new_end);//can avoid these if the tail node is updated with min max positions
-	//min_pos = search_value (list, min);
+	min = __INT_MAX__; 
+
 	min_pos = 1;
 	
 	temp = list -> next;
@@ -214,11 +213,8 @@ int get_rotate_count(t_list *list)
 				}
 				temp = temp -> next;
 				count++;
-				//printf("min_val: %d positioon: %d \n", count, min_pos);
 			}while (count < new_end);
 			
-			//printf("min_valx: %d positioon: %d \n", min, min_pos);
-
 			temp = NULL;
 			new_end = min_pos;
 			temp = list -> next;
@@ -236,7 +232,7 @@ int get_rotate_count(t_list *list)
 				*/
 
 
-		}while (min_pos > 2); // length > 2?
+		}while (min_pos > 2);
 
 return (last_min_index);
 
