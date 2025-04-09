@@ -31,17 +31,20 @@ int     sort_algo(t_list **tail)
         if (!tail_b)
                 return (0);
         tail_b -> next = NULL;
-
-		populate_b(tail, &tail_b);
+		int x = get_rotate_count(*tail);
+		//populate_b(tail, &tail_b);
 		total_count = (*tail) -> tail_count;
 
+	int x = get_rotate_count(*tail);
 
-	//make a only have 1 elements
+	/*
+		//make a only have 1 elements
 	if (total_count > 1)
 	{
 		while (total_count >1)
 		{
-			success = push_b(&tail_b, tail);
+			success = push_b(&tail_b, tail); // can break down as i. finding the rotate count ii. rotate iii. push_b()
+											// but for the moment everything is coded in push_b()
 			if (!success)
 			{
 				printf("another error \n");
@@ -51,7 +54,7 @@ int     sort_algo(t_list **tail)
 		}
 		
 	}
-		
+	*/	
 
 	if ((*tail) -> tail_count > 0)// no need for this. since there is only one element. 
 	{
@@ -72,29 +75,17 @@ int     sort_algo(t_list **tail)
 	//printf("tail_content ..%d \n", tail_b -> tail_count	);
 	//printf(".....count b %d \n", total_count);
 
-
-
-
 	min_p = 1;
 	max_p = 1;
 
-
-
-
 	print_list(tail_b);
 
-	//printf("%d b count:\n", tail_b -> tail_count);
+
 	
-	//printf ("max...%d min....%d \n", max_p, min_p);
+find_min_max_pos(tail_b, &min_p, &max_p, &max_b, &min_b);
 
-	//find min and push to a. 
-//need to optimize this ... not checking the closest path for simplicity 
-
-// the minimum value needs to be under the largest value
-//######################################################################################3
-	
-	//
-
+/*  
+//This is for pushing back from b where min or max depending on the shortest path is pushed back and then the newly pushed value needs to be positioned top or bottom. 
 while (tail_b -> tail_count > 1)
 {
 	find_min_max_pos(tail_b, &min_p, &max_p, &max_b, &min_b);
@@ -123,13 +114,11 @@ while (tail_b -> tail_count > 1)
 
 
 }
-	
+*/	
 if (tail_b -> tail_count == 1)
 	push_a(tail, &tail_b);
 
-
-	//print_list(tail_b);
-	
+//*****************this is the final rotation to get min value which is now in the middle to the top */	
 	/*
 	
 	while (total_count > 0)
@@ -372,90 +361,6 @@ void optimize_b(t_list **a, t_list **b) // Think about it
 		
 	}while (success != 0);
 }
-/*
- 
-	*tail = cll_add_at_end(*tail, 57);
-        total_count = ccl_count(*tail);
-	printf("%d....tail count%d\n", total_count, (*tail) -> tail_count);
-
-		*tail = cll_add_at_end(*tail, 57);
-        total_count = ccl_count(*tail);
-	printf("%d....tail count%d\n", total_count, (*tail) -> tail_count);
-
-	*tail = cll_add_at_end(*tail, -8);
-        total_count = ccl_count(*tail);
-	printf("%d....tail count%d\n", total_count, (*tail) -> tail_count);
 
 
-	*tail = cll_add_at_begin(*tail, 1);
-        total_count = ccl_count(*tail);
-	printf("%d....tail count%d\n", total_count, (*tail) -> tail_count);
 
-
-	*tail = cll_add_at_begin(*tail, 0);
-        total_count = ccl_count(*tail);
-	printf("%d....tail count%d\n", total_count, (*tail) -> tail_count);
-
-	*tail = cll_delete_last(*tail);
-        total_count = ccl_count(*tail);
-	printf("%d....tail count%d\n", total_count, (*tail) -> tail_count);
-        
-	
-	*tail = cll_delete_top(*tail);
-        total_count = ccl_count(*tail);
-	printf("%d....tail count%d\n", total_count, (*tail) -> tail_count);
- */
-
- /*      
-        rotate_a(a,b,1 );
-        printf("third last %d\n", search_value(*a, 0));
-        rotate_a(a, b, 1);
-        printf("third last %d\n", search_value(*a, 0));
-        rotate_a(a, b, 1);
-        printf("third last %d\n", search_value(*a, 0));
-        rotate_a(a, b, 1);
-        printf("third last %d\n", search_value(*a, 0));
-        rotate_a(a, b, 1);
-        printf("third last %d\n", search_value(*a, 0));
-        rotate_a(a, b, 1);
-        printf("third last %d\n", search_value(*a, 0));
-        rotate_a(a, b, 1);
-        printf("third last %d\n", search_value(*a, 0));
-        rotate_a(a, b, 1);
-        printf("third last %d\n", search_value(*a, 0));
-
-
-        printf("------------reversing\n");
-
-      rev_rotate_a(a, b, 1);
-        printf("third last %d\n", search_value(*a, 0));
-        rev_rotate_a(a, b, 1);
-        printf("third last %d\n", search_value(*a, 0));
-        rev_rotate_a(a, b, 1);
-        printf("third last %d\n", search_value(*a, 0));
-        rev_rotate_a(a, b, 1);
-        printf("third last %d\n", search_value(*a, 0));
-        rev_rotate_a(a, b, 1);
-        printf("third last %d\n", search_value(*a, 0));
-        rev_rotate_a(a, b, 1);
-        printf("third last %d\n", search_value(*a, 0));
-        rev_rotate_a(a, b, 1);
-        printf("third last %d\n", search_value(*a, 0));
-        rev_rotate_a(a, b, 1);
-        printf("third last %d\n", search_value(*a, 0));
-*/
-
-/*      find_insert_pos(*a, 14);
-        find_insert_pos(*a, 20);
-        find_insert_pos(*a, 25);
-        find_insert_pos(*a, 2);
-        find_insert_pos(*a, -1);
-*/
-/*      printf("first %d\n", search_value(*a, 13));
-        printf("second %d\n", search_value(*a, 15));
-        printf("third %d\n", search_value(*a, 19));
-        printf("third last %d\n", search_value(*a, 0));
-        printf("second last%d\n", search_value(*a,1));
-        printf(" last %d\n", search_value(*a, 10));
-        printf("not exist  %d\n", search_value(*a,2) );
-*/
