@@ -36,11 +36,12 @@ int     sort_algo(t_list **tail)
         if (!tail_b)
                 return (0);
         tail_b -> next = NULL;
-		int x = get_rotate_count(*tail);
+
 		//populate_b(tail, &tail_b);
 		total_count = (*tail) -> tail_count;
 
 	int x = get_rotate_count(*tail);
+	printf("..%d \n", x);
 
 	/*
 		//make a only have 1 elements
@@ -83,7 +84,7 @@ int     sort_algo(t_list **tail)
 	min_p = 1;
 	max_p = 1;
 
-	print_list(tail_b);
+	//print_list(tail_b);
 
 
 	
