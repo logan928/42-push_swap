@@ -173,6 +173,10 @@ int find_min_max_pos(t_list *tail, int *min_pos, int *max_pos, int *max, int *mi
 		temp = temp -> next;
 		count++;
 	}while (temp -> next != tail -> next -> next);
+	tail -> min = *min;
+	tail -> min_pos = *min_pos;
+	tail -> max = *max;
+	tail -> max_pos = *max_pos;
 	return (1);
 }
 

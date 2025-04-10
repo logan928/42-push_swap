@@ -19,6 +19,11 @@ typedef struct s_list
 {
 	int		content;
 	int		tail_count;
+	int		total;
+	int		min;
+	int		max;
+	int		min_pos;
+	int		max_pos;
 	struct s_list	*next;
 } t_list;
 
