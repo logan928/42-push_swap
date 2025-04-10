@@ -32,10 +32,10 @@ t_list *rotate_list (t_list *tail)
 	if (tail -> next == tail)
 		return (tail);
 	tail -> next -> tail_count = tail -> tail_count;
-	tail -> next -> total = tail -> total;
+	//tail -> next -> total = tail -> total;
 	tail -> next -> min = tail -> min;
 	tail -> tail_count = 0;
-	tail -> total = 0;
+	//tail -> total = 0;
 	tail = tail -> next;
 
 	return (tail);
@@ -55,10 +55,10 @@ t_list *rev_rotate_list(t_list *tail)
 		temp = temp -> next;
 	}
 	temp -> tail_count = tail -> tail_count;
-	temp -> total = tail -> total;
+	//temp -> total = tail -> total;
 	temp -> min = tail -> min;
 	tail -> tail_count = 0;
-	tail -> total = 0;
+	//tail -> total = 0;
 	return (temp);
 }
 
@@ -172,7 +172,7 @@ int find_min_max_pos(t_list *tail)
 	min_pos = 1;
 	below_avg_count = 0;
 	below_avg_total = 0;
-	avg = (int) (tail -> total / tail -> tail_count );
+	//avg = (int) (tail -> total / tail -> tail_count );
 
 	do
     {
@@ -186,11 +186,6 @@ int find_min_max_pos(t_list *tail)
 			min = temp -> content;
 			min_pos = count;
 		}
-		if (temp -> content < avg)
-		{
-			below_avg_count++;
-			below_avg_total += temp -> content;
-		}
 		temp = temp -> next;
 		count++;
 	}while (temp -> next != tail -> next -> next);
@@ -198,10 +193,7 @@ int find_min_max_pos(t_list *tail)
 	tail -> min_pos = min_pos;
 	tail -> max = max;
 	tail -> max_pos = max_pos;
-	if (below_avg_count > 0)
-		tail -> check_val =  (int) (below_avg_total / below_avg_count );
-	else
-		tail -> check_val = max;
+	tail -> check_val = (int) (max / 2);
 	return (1);
 }
 
@@ -223,6 +215,7 @@ int get_rotate_count(t_list *list) // need to update direction, also need to han
 	new_end = list -> tail_count;
 
 	min_pos = 1;
+	last_min_index = 1;
 	
 	temp = list -> next;
 
@@ -258,6 +251,7 @@ int get_rotate_count(t_list *list) // need to update direction, also need to han
 
 		}while (min_pos > 2);
 
+ 
 return (last_min_index);
 
 }
