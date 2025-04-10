@@ -32,7 +32,10 @@ t_list *rotate_list (t_list *tail)
 	if (tail -> next == tail)
 		return (tail);
 	tail -> next -> tail_count = tail -> tail_count;
+	tail -> next -> total = tail -> total;
+	tail -> next -> min = tail -> min;
 	tail -> tail_count = 0;
+	tail -> total = 0;
 	tail = tail -> next;
 
 	return (tail);
@@ -52,7 +55,10 @@ t_list *rev_rotate_list(t_list *tail)
 		temp = temp -> next;
 	}
 	temp -> tail_count = tail -> tail_count;
+	temp -> total = tail -> total;
+	temp -> min = tail -> min;
 	tail -> tail_count = 0;
+	tail -> total = 0;
 	return (temp);
 }
 
@@ -144,45 +150,64 @@ int search_value(t_list *tail, int num)
 	return (0);
 }
 
-int find_min_max_pos(t_list *tail, int *min_pos, int *max_pos, int *max, int *min)
+int find_min_max_pos(t_list *tail)
 {
 	int count;
 	t_list *temp;
+	int min_pos;
+	int max_pos;
+	int max;
+	int min;
+	int avg;
+	int below_avg_total;
+	int below_avg_count;
 	
 	if(!tail || !(tail -> next))
 		return (0);
 	temp = tail -> next;
 	count = 1;
-	*max = temp -> content;
-	*min = temp -> content;
-	*max_pos = 1;
-	*min_pos = 1;
-	
+	max = temp -> content;
+	min = temp -> content;
+	max_pos = 1;
+	min_pos = 1;
+	below_avg_count = 0;
+	below_avg_total = 0;
+	avg = (int) (tail -> total / tail -> tail_count );
+
 	do
-       	{
-		if (temp -> content > *max)
+    {
+		if (temp -> content > max)
 		{
-			*max = temp -> content;
-			*max_pos = count;
+			max = temp -> content;
+			max_pos = count;
 		}
-		else if (temp -> content < *min)
+		else if (temp -> content < min)
 		{
-			*min = temp -> content;
-			*min_pos = count;
+			min = temp -> content;
+			min_pos = count;
+		}
+		if (temp -> content < avg)
+		{
+			below_avg_count++;
+			below_avg_total += temp -> content;
 		}
 		temp = temp -> next;
 		count++;
 	}while (temp -> next != tail -> next -> next);
-	tail -> min = *min;
-	tail -> min_pos = *min_pos;
-	tail -> max = *max;
-	tail -> max_pos = *max_pos;
+	tail -> min = min;
+	tail -> min_pos = min_pos;
+	tail -> max = max;
+	tail -> max_pos = max_pos;
+	if (below_avg_count > 0)
+		tail -> check_val =  (int) (below_avg_total / below_avg_count );
+	else
+		tail -> check_val = max;
 	return (1);
 }
 
 
 
-int get_rotate_count(t_list *list)
+int get_rotate_count(t_list *list) // need to update direction, also need to handle when the count of the list is two. suggestion: add a swap_a() followed by a push_b();
 {
 	int	min_pos;
 	int min;
@@ -196,7 +221,6 @@ int get_rotate_count(t_list *list)
 		return (0);
 
 	new_end = list -> tail_count;
-	min = __INT_MAX__; 
 
 	min_pos = 1;
 	
@@ -206,8 +230,6 @@ int get_rotate_count(t_list *list)
 			min = temp -> content;
 			count = 1;
 			min_pos = 1;
-			printf("total %d... new_end.%d \n", list -> tail_count, min);
-
 			do
 			{
 				if (temp -> content < min)
@@ -222,13 +244,11 @@ int get_rotate_count(t_list *list)
 			temp = NULL;
 			new_end = min_pos;
 			temp = list -> next;
-			last_min_index = min_pos;
-			printf("temp content: %d bew ened: %d \n", temp -> content, new_end);
-			if (min_pos < 2)
+			if (min > list -> check_val)
 			{
 				break;
 			}
-
+			last_min_index = min_pos;
 
 			/*
 			if (min > avg_lower)

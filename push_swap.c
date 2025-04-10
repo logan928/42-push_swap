@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
 	if(!validate_list(argc, argv, &tail))
 		return (0);
 
+		printf("%d \n", argc);
 	int i= -1; //delete
 	i = sort_algo(&tail);
 //		printf("%d \n", i); 
