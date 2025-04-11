@@ -208,35 +208,79 @@ int get_rotate_count(t_list *list) // need to update direction, also need to han
 	t_list *temp;
 	int 	count;
 	int last_min_index;
+	int direction; 
+	t_list *prev_min;
 
 	if(!list || !(list -> next))
 		return (0);
 
-	new_end = list -> tail_count;
+	//new_end = list -> tail_count;
+	new_end = list -> min_pos;
+	printf("new end: %d, tail count: %d \n", new_end, list -> tail_count);
+	if (new_end <= (int)( (list -> tail_count) / 2)) // can shorten this to one line
+		direction = 1;
+	else
+		direction = 0; 
 
-	min_pos = 1;
+	prev_min = NULL;  
+
+	if (direction)
+	{
+		min_pos = 1;
+	}
+	else
+	{
+
+		min_pos = list -> min_pos;
+	}
 	last_min_index = 1;
+	count = 1;
 	
 	temp = list -> next;
 
 		do {
 			min = temp -> content;
-			count = 1; // can update count or can later add the min_pos to this. 
-			min_pos = 1;// depends on what logic is used for count. has to match with count logic
+
+			if (direction)
+			{
+				min_pos = 1;// depends on what logic is used for count. has to match with count logic
+			}
+			else
+			{
+				min_pos = min_pos + 1;// depends on what logic is used for count. has to match with count logic
+			}
+			
 			do
 			{
 				if (temp -> content < min)
 				{
 					min = temp -> content;
 					min_pos = count;
+					prev_min = temp;
+
+					printf("found a min: %d min position: %d new end: %d direction: %d\n", min, min_pos, new_end, direction);
 				}
 				temp = temp -> next;
+				
 				count++;
 			}while (count < new_end);
 			
 			temp = NULL;
-			new_end = min_pos; //or total_list count
-			temp = list -> next; // or have a different variable to point to min_pos and get the next; 
+			if (direction)
+			{
+				new_end = min_pos; //or total_list count
+				count = 1; // can update count or can later add the min_pos to this. 
+				//min_pos = 1;// depends on what logic is used for count. has to match with count logic
+				temp = list -> next; // or have a different variable to point to min_pos and get the next; 
+			}
+			else
+			{
+				new_end = list -> tail_count; //or total_list count
+				count = min_pos + 1; // can update count or can later add the min_pos to this. 
+				//min_pos = min_pos + 1;// depends on what logic is used for count. has to match with count logic
+				temp = prev_min -> next; // or have a different variable to point to min_pos and get the next; 
+			}
+			printf("check value %d: min_pos: %d\n", list -> check_val, min_pos);
 			if (min > list -> check_val)
 			{
 				break;
@@ -249,7 +293,10 @@ int get_rotate_count(t_list *list) // need to update direction, also need to han
 				*/
 
 
-		}while (min_pos > 2);
+		}while (min_pos > 2 && min_pos <= list -> tail_count);
+
+		if (!direction)
+			last_min_index = (list -> tail_count - min_pos) * -1;
 
  
 return (last_min_index);

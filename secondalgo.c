@@ -40,8 +40,8 @@ int     sort_algo(t_list **tail)
 		populate_b(tail, &tail_b);
 		//total_count = (*tail) -> tail_count;
 
-		swap_a(tail, &tail_b);
-		push_b(&tail_b, tail);
+	//	swap_a(tail, &tail_b);
+	//	push_b(&tail_b, tail);
 
 
 
@@ -49,7 +49,7 @@ int     sort_algo(t_list **tail)
 	
 find_min_max_pos(tail_b);
 
-
+/*
 //This is for pushing back from b where min or max depending on the shortest path is pushed back and then the newly pushed value needs to be positioned top or bottom. 
 while (tail_b -> tail_count > 1)
 {
@@ -85,7 +85,7 @@ while (tail_b -> tail_count > 1)
 			success += rotate_a(tail, &tail_b, 1);
 
 }
-
+*/
 	
 /*if (tail_b -> tail_count == 1)
 	push_a(tail, &tail_b);
@@ -175,6 +175,8 @@ do{
 		find_min_max_pos(*a);
         total_count = (*a) -> tail_count;
 		rotate_count = get_rotate_count(*a);
+
+		printf("rotate count: %d \n", rotate_count);
 		if (rotate_count > 600)
 		{
 			print_list(*a);
@@ -216,13 +218,27 @@ do{
 		else
 			rotate_a(a, b, 1);
 			*/
-		while (rotate_count > 1)
-		{
-			rotate_a(a, b, 1);
-			rotate_count--;
-		}
 
+		if (rotate_count > 0)
+		{
+			while (rotate_count > 1)
+			{
+				rotate_a(a, b, 1);
+				rotate_count--;
+			}
+		}
+		else
+		{
+			rotate_count *= -1;
+			while (rotate_count > -1)
+			{
+				rev_rotate_a(a, b, 1);
+				rotate_count--;
+			}
+		}
 		push_b(b, a);
+		print_list(*a);
+		print_list(*b);
 		//find_min_max_pos(*a);
 
 	//}while (total_count != push);
