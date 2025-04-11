@@ -243,7 +243,7 @@ do{
 
 	//}while (total_count != push);
 
-}while (total_count > 3);
+}while (total_count > 2);
 
 }
 

@@ -19,7 +19,7 @@ typedef struct s_list
 {
 	int		content;
 	int		tail_count;
-	int		total;
+	long long int		total;
 	int		min;
 	int		max;
 	int		min_pos;

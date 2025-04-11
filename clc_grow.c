@@ -21,7 +21,7 @@ t_list *cll_init(t_list *tail, int	f_value)
 	tail -> content = f_value;
 	tail -> next = tail;
 	tail -> tail_count = 1;
-	//tail -> total = f_value;
+	tail -> total = f_value;
 	return (tail);
 }
 
@@ -33,7 +33,7 @@ t_list *cll_add_at_end(t_list *tail, int node_value)
 	new_node -> content = node_value;
 	new_node -> next = tail -> next;
 	new_node -> tail_count = ++(tail -> tail_count);
-	//new_node -> total = (tail -> total) + node_value;
+	new_node -> total = (tail -> total) + node_value;
 	tail -> tail_count = 0;
 	tail -> next = new_node;
 	return (new_node);
@@ -61,7 +61,7 @@ t_list *cll_add_at_begin(t_list *tail, int node_value)
 	new_node -> tail_count = 0;
 	tail -> next = new_node;
 	tail -> tail_count = ++(tail -> tail_count);
-	//tail -> total += node_value;
+	tail -> total += node_value;
 	//printf("debug...%d \n", tail -> next -> content);
 	return (tail);	
 }
@@ -85,7 +85,7 @@ t_list *cll_delete_last(t_list *tail)
 	}
 	temp -> next = tail -> next;
 	temp -> tail_count = --(tail -> tail_count);
-	//temp -> total = tail -> total - tail -> content;
+	temp -> total = tail -> total - tail -> content;
 	free(tail);
 	return (temp);
 
@@ -106,7 +106,7 @@ t_list *cll_delete_top(t_list *tail)
 	}
 	tail -> next = temp -> next;
 	--(tail -> tail_count);
-	//tail -> total -= temp -> content;
+	tail -> total -= temp -> content;
 	free (temp);
 	temp = NULL;
 	return (tail);
