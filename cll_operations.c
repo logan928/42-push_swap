@@ -221,8 +221,8 @@ int get_rotate_count(t_list *list) // need to update direction, also need to han
 
 		do {
 			min = temp -> content;
-			count = 1;
-			min_pos = 1;
+			count = 1; // can update count or can later add the min_pos to this. 
+			min_pos = 1;// depends on what logic is used for count. has to match with count logic
 			do
 			{
 				if (temp -> content < min)
@@ -235,8 +235,8 @@ int get_rotate_count(t_list *list) // need to update direction, also need to han
 			}while (count < new_end);
 			
 			temp = NULL;
-			new_end = min_pos;
-			temp = list -> next;
+			new_end = min_pos; //or total_list count
+			temp = list -> next; // or have a different variable to point to min_pos and get the next; 
 			if (min > list -> check_val)
 			{
 				break;
