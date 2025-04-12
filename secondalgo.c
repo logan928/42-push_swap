@@ -217,63 +217,8 @@ do{
 		
 		//printf("...%lf\n", middle);
 
-	/*
-        if (push != total_count)
-        {
-        		int i = 0;
-                while (push > 0)
-                {
-                        i = push_b (b, a);
-						//optimize_b(a, b);
-			//optimize_b (a, b); this will not optimize  to counter cases of 3, 4, 5
-			//Opportunity to reduce instructions by optimising b after each push. 
-			//only optimize not the exact insertion. 
-                        if (i == 0)
-                        {
-                                printf("isomething went wrong %d\n", i);//remove
-                                break;
-                        }
-                  
-                        if ((*a) -> next -> content > (*a) -> content)
-                                break;
-                        push--;
-               	}
-				
-		}
-		*/
-		/*if ((*a) -> next -> content < middle)
-			push_b(b,a);
-		else
-			rotate_a(a, b, 1);
-			*/
-
-	/*	if (rotate_count > 0)
-		{
-			while (rotate_count > 1)
-			{
-				rotate_a(a, b, 1);
-				rotate_count--;
-			}
-		}
-		else
-		{
-			rotate_count *= -1;
-			while (rotate_count > -1)
-			{
-				rev_rotate_a(a, b, 1);
-				rotate_count--;
-			}
-		}
-		*/
-
-
 
 		push_b(b, a);
-		//print_list(*a);
-		//print_list(*b);
-		//find_min_max_pos(*a);
-
-	//}while (total_count != push);
 
 }while (total_count > 2);
 
