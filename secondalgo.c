@@ -49,7 +49,7 @@ int     sort_algo(t_list **tail)
 	
 find_min_max_pos(tail_b);
 
-/*
+
 //This is for pushing back from b where min or max depending on the shortest path is pushed back and then the newly pushed value needs to be positioned top or bottom. 
 while (tail_b -> tail_count > 1)
 {
@@ -57,7 +57,7 @@ while (tail_b -> tail_count > 1)
 		find_min_max_pos(tail_b);
 		//print_list(tail_b);
 		//print_list(*tail);
-
+	
 	rotate = rotate_count(tail_b -> tail_count, tail_b -> max_pos, tail_b -> min_pos);
 	//printf("rotate %d \n", rotate);
 	
@@ -85,11 +85,11 @@ while (tail_b -> tail_count > 1)
 			success += rotate_a(tail, &tail_b, 1);
 
 }
-*/
+
 	
-/*if (tail_b -> tail_count == 1)
+if (tail_b -> tail_count == 1)
 	push_a(tail, &tail_b);
-	*/
+	
 
 
 //*****************this is the final rotation to get min value which is now in the middle to the top */	
@@ -169,14 +169,42 @@ void populate_b(t_list **a, t_list **b)
 		int		min_a;
 		double middle;
 		int 	rotate_count;
+		int		direction;
 
 do{
 		//optimize_a(a, b);// check for successful changes and loop. work the middle value problem with forced rotation
 		find_min_max_pos(*a);
         total_count = (*a) -> tail_count;
-		rotate_count = get_rotate_count(*a);
 
-		printf("rotate count: %d \n", rotate_count);
+		direction = 0;
+		if ((*a) -> half_total < (int)((*a) -> tail_count)/2)
+			direction = 1;
+		if ( (*a) -> min_pos < (int)((*a) -> tail_count)/10 )
+			direction = 1;
+		if ( (*a) -> min_pos > (int)((*a) -> tail_count) * 9/10 )
+			direction = 0;
+		
+		if (direction)
+		{
+			rotate_count = get_rotate_count(*a);
+			while (rotate_count > 1)
+			{
+				rotate_a(a, b, 1);
+				rotate_count--;
+			}
+		}
+		else
+		{
+			rotate_count = get_rev_rotate_count(*a);
+			while (rotate_count > -1)
+			{
+				rev_rotate_a(a, b, 1);
+				rotate_count--;
+			}
+		}
+
+
+		//printf("rotate count: %d \n", rotate_count);
 		if (rotate_count > 600)
 		{
 			print_list(*a);
@@ -219,7 +247,7 @@ do{
 			rotate_a(a, b, 1);
 			*/
 
-		if (rotate_count > 0)
+	/*	if (rotate_count > 0)
 		{
 			while (rotate_count > 1)
 			{
@@ -236,9 +264,13 @@ do{
 				rotate_count--;
 			}
 		}
+		*/
+
+
+
 		push_b(b, a);
-		print_list(*a);
-		print_list(*b);
+		//print_list(*a);
+		//print_list(*b);
 		//find_min_max_pos(*a);
 
 	//}while (total_count != push);

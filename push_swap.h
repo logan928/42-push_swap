@@ -25,6 +25,7 @@ typedef struct s_list
 	int		min_pos;
 	int		max_pos;
 	int 	check_val;
+	int		half_total;
 	struct s_list	*next;
 } t_list;
 
@@ -59,6 +60,8 @@ int     push_count(t_list *tail, int mul);
 int    find_insert_pos(t_list *tail, int inst_val);
 int find_min_max_pos(t_list *tail);
 int get_rotate_count(t_list *list);
+int get_rev_rotate_count(t_list *list);
+
 
 int     sort_algo(t_list **tail);
 int     insert_back(t_list **a, t_list **b, int *a_min, int *a_max);
