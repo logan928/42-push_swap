@@ -47,7 +47,7 @@ int     sort_algo(t_list **tail)
 
 
 	
-find_min_max_pos(tail_b);
+
 
 
 //This is for pushing back from b where min or max depending on the shortest path is pushed back and then the newly pushed value needs to be positioned top or bottom. 
@@ -127,6 +127,8 @@ if (tail_b -> tail_count == 1)
 	}
 
 	*/
+
+	printf("final list \n");
 	print_list(*tail);
 	delete_list(&tail_b);//position of delet_list and following delete tail needs to be checked.
         if(tail_b)
@@ -175,16 +177,30 @@ do{
 		//optimize_a(a, b);// check for successful changes and loop. work the middle value problem with forced rotation
 		find_min_max_pos(*a);
         total_count = (*a) -> tail_count;
+	//printf("count: %d, total: %lld, half-total: %d, min-val: %d, min-pos: %d \n", (*a) -> tail_count, (*a) -> total, (*a) -> half_total, (*a) -> min, (*a) -> min_pos);
+	//print_list(*a);
+	//	print_list(*b);
 
 		direction = 0;
-		if ((*a) -> half_total < (int)((*a) -> tail_count)/2)
+
+		if ((long long int)((*a) -> half_total) < ((long long int)((*a) -> total)/2))
+		{
+			//printf("1\n");
 			direction = 1;
-		if ( (*a) -> min_pos < (int)((*a) -> tail_count)/10 )
+		}
+		if ( ((*a) -> min_pos) < ((int)((*a) -> tail_count)/4) )
+		{
+			//printf("2\n");
 			direction = 1;
-		if ( (*a) -> min_pos > (int)((*a) -> tail_count) * 9/10 )
+		}
+
+		if ( ((*a) -> min_pos) > ((int)((*a) -> tail_count) * 3/4) )
+		{
+			//printf("3\n");
 			direction = 0;
+		}
 		
-		if (direction)
+		if (direction == 1)
 		{
 			rotate_count = get_rotate_count(*a);
 			while (rotate_count > 1)
@@ -205,7 +221,7 @@ do{
 
 
 		//printf("rotate count: %d \n", rotate_count);
-		if (rotate_count > 600)
+		if (rotate_count > 50)
 		{
 			print_list(*a);
 			print_list(*b);
@@ -219,6 +235,27 @@ do{
 
 
 		push_b(b, a);
+		if ((*b) -> tail_count > 1  )
+		{
+			find_min_max_pos(*b);
+			//rotate_b(a, b, 1);
+		}
+
+		if ((*b) -> tail_count > 1 && (*b) -> next -> content < (*b) -> check_val )
+		{
+			//find_min_max_pos(*b);
+			rotate_b(a, b, 1);
+		}
+
+		//if ((*b) -> tail_count > 1 ) //
+			//rotate_b(a, b, 1);
+		swap_b(a, b);
+		print_list(*b);
+
+		// ### if the last push value is the current min value of a, then do a forced rotate on b, so it will be placed below the min of a; 
+		// only if hte count is half the original count. or if the last pushed value is below the average of b. be careful when the list b is empty 
+		// or when only the first value is pushed. 
+		//get the below average average of b and make the push decision. 
 
 }while (total_count > 2);
 
