@@ -95,16 +95,10 @@ if (tail_b -> tail_count == 1)
 //*****************this is the final rotation to get min value which is now in the middle to the top */	
 
 
-	/*
 	
-	while (total_count > 0)
-	{
-		insert_back(tail, &tail_b, &a_min, &a_max); // This needs to be reworked
-		//print_list(*tail);
-		total_count--;	
-		//printf("tail_min1: %d tail_max: %d\n", a_min, a_max);// remove
-	}
-	min_position = search_value(*tail, a_min);
+	
+	find_min_max_pos(*tail);
+	min_position = search_value(*tail, (*tail) -> min);
 	//printf("%d..\n", a_min);
 
 	total_count = (*tail) -> tail_count;
@@ -126,10 +120,10 @@ if (tail_b -> tail_count == 1)
 		
 	}
 
-	*/
+	
 
-	printf("final list \n");
-	print_list(*tail);
+//	printf("final list \n");
+//	print_list(*tail);
 	delete_list(&tail_b);//position of delet_list and following delete tail needs to be checked.
         if(tail_b)
         {
@@ -250,12 +244,7 @@ do{
 		//if ((*b) -> tail_count > 1 ) //
 			//rotate_b(a, b, 1);
 		swap_b(a, b);
-		print_list(*b);
-
-		// ### if the last push value is the current min value of a, then do a forced rotate on b, so it will be placed below the min of a; 
-		// only if hte count is half the original count. or if the last pushed value is below the average of b. be careful when the list b is empty 
-		// or when only the first value is pushed. 
-		//get the below average average of b and make the push decision. 
+		//print_list(*b);
 
 }while (total_count > 2);
 
