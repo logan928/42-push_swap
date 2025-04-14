@@ -38,17 +38,6 @@ int     sort_algo(t_list **tail)
         tail_b -> next = NULL;
 		find_min_max_pos(*tail);
 		populate_b(tail, &tail_b);
-		//total_count = (*tail) -> tail_count;
-
-	//	swap_a(tail, &tail_b);
-	//	push_b(&tail_b, tail);
-
-
-
-
-	
-
-
 
 //This is for pushing back from b where min or max depending on the shortest path is pushed back and then the newly pushed value needs to be positioned top or bottom. 
 while (tail_b -> tail_count > 1)
@@ -59,7 +48,6 @@ while (tail_b -> tail_count > 1)
 		//print_list(*tail);
 	
 	rotate = rotate_count(tail_b -> tail_count, tail_b -> max_pos, tail_b -> min_pos);
-	//printf("rotate %d \n", rotate);
 	
 	if (rotate > 1)
 	{
@@ -72,6 +60,7 @@ while (tail_b -> tail_count > 1)
 	else
 	{
 		rotate *= -1;
+	
 		while(rotate + 1 > 0)
 		{
 			rev_rotate_b(tail, &tail_b, 1);
@@ -83,19 +72,23 @@ while (tail_b -> tail_count > 1)
 
 	if ((*tail) -> next -> content == check_min)
 			success += rotate_a(tail, &tail_b, 1);
+	
+	//print_list(tail_b);
 
 }
 
 	
 if (tail_b -> tail_count == 1)
 	push_a(tail, &tail_b);
+
+
 	
 
 
 //*****************this is the final rotation to get min value which is now in the middle to the top */	
 
 
-	
+/*	
 	
 	find_min_max_pos(*tail);
 	min_position = search_value(*tail, (*tail) -> min);
@@ -120,7 +113,7 @@ if (tail_b -> tail_count == 1)
 		
 	}
 
-	
+*/	
 
 //	printf("final list \n");
 //	print_list(*tail);
@@ -169,6 +162,8 @@ void populate_b(t_list **a, t_list **b)
 
 do{
 		//optimize_a(a, b);// check for successful changes and loop. work the middle value problem with forced rotation
+		//swap_a(a, b);
+		//tate_a(a, b, 0);
 		find_min_max_pos(*a);
         total_count = (*a) -> tail_count;
 	//printf("count: %d, total: %lld, half-total: %d, min-val: %d, min-pos: %d \n", (*a) -> tail_count, (*a) -> total, (*a) -> half_total, (*a) -> min, (*a) -> min_pos);
@@ -243,6 +238,7 @@ do{
 
 		//if ((*b) -> tail_count > 1 ) //
 			//rotate_b(a, b, 1);
+		//swap_a(a, b);
 		swap_b(a, b);
 		//print_list(*b);
 
