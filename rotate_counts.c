@@ -6,37 +6,78 @@
 /*   By: uwettasi <uwettasi@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 13:38:31 by uwettasi          #+#    #+#             */
-/*   Updated: 2025/04/15 15:40:57 by uwettasi         ###   ########.fr       */
+/*   Updated: 2025/04/15 16:35:01 by uwettasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
+/*
 static void	rotate(t_list *list, t_limits *rl, t_list *temp, t_list *prev_min)
 {
-	do{
+	do
+	{
 		rl -> min = temp -> content;
 		rl -> min_pos = 1;
-		do{
+		do
+		{
 			if (temp -> content < rl -> min)
 			{
 				rl -> min = temp -> content;
 				rl -> min_pos = rl -> count;
 				prev_min = temp;
+			}
+			temp = temp -> next;
+			rl -> count++;
 		}
-		temp = temp -> next;
-		rl -> count++;
-		} while (rl -> count < rl -> new_end);
+	       	while (rl -> count < rl -> new_end);
 		temp = NULL;
-		rl -> new_end = rl -> min_pos; 
-		rl -> count = 1;  
-			temp = list -> next; 
+		rl -> new_end = rl -> min_pos;
+		rl -> count = 1;
+		temp = list -> next;
 		if (rl -> min > list -> check_val)
 			break;
 		rl -> last_min_index = rl -> min_pos;
-	}while (rl -> min_pos > 1 && rl -> min_pos <= list -> tail_count);
+	} while (rl -> min_pos > 1 && rl -> min_pos <= list -> tail_count);
 }
+*/
+
+	static void	rotate(t_list *list, t_limits *rl, t_list *temp, t_list *prev_min)
+	{
+		int	loop = 1;
+	
+		while (loop && rl->min_pos > 1 && rl->min_pos <= list->tail_count)
+		{
+			// Initialize for each outer loop pass
+			temp = list->next;
+			rl->min = temp->content;
+			rl->min_pos = 1;
+			rl->count = 1;
+	
+			while (rl->count < rl->new_end)
+			{
+				if (temp->content < rl->min)
+				{
+					rl->min = temp->content;
+					rl->min_pos = rl->count;
+					prev_min = temp;
+				}
+				temp = temp->next;
+				rl->count++;
+			}
+	
+			temp = NULL;
+			rl->new_end = rl->min_pos;
+			rl->count = 1;
+	
+			if (rl->min > list->check_val)
+				break;
+	
+			rl->last_min_index = rl->min_pos;
+		}
+	}
+	
 
 static void rev_rotate(t_list *list, t_limits *rl, t_list *temp, t_list *prev_min)
 {

@@ -88,7 +88,7 @@ if (tail_b -> tail_count == 1)
 //*****************this is the final rotation to get min value which is now in the middle to the top */	
 
 
-/*	
+
 	
 	find_min_max_pos(*tail);
 	min_position = search_value(*tail, (*tail) -> min);
@@ -113,7 +113,7 @@ if (tail_b -> tail_count == 1)
 		
 	}
 
-*/	
+	
 
 //	printf("final list \n");
 //	print_list(*tail);
