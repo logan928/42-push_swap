@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
- #include "push_swap.h"
- #include <stdio.h>
+#include "push_swap.h"
+#include <stdio.h>
 
 t_list	*cll_delete_last(t_list *tail)
 {
@@ -56,19 +56,19 @@ t_list	*cll_delete_top(t_list *tail)
 	return (tail);
 }
 
-void delete_list (t_list **tail)
+void	delete_list(t_list **tail)
 {
-	t_list *temp;
-	
-	if(!(*tail) || !((*tail) -> next))
-		return;
-	temp = (*tail) -> next;
-	while(temp != *tail)
+	t_list	*temp;
+
+	if (!(*tail) || !((*tail)-> next))
+		return ;
+	temp = (*tail)-> next;
+	while (temp != *tail)
 	{
-		(*tail) -> next = temp -> next;
+		(*tail)-> next = temp -> next;
 		free (temp);
 		temp = NULL;
-		temp = (*tail) -> next;
+		temp = (*tail)-> next;
 	}
 	free (*tail);
 	*tail = NULL;
