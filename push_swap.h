@@ -29,6 +29,15 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+typedef struct min_max_values
+{
+	int	min_pos;
+	int	min;
+	int	new_end;
+	int	count;
+	int	last_min_index;
+}	t_limits;
+
 t_list	*cll_init(t_list *tail, int f_value);
 t_list	*cll_add_at_end(t_list *tail, int node_value);
 t_list	*cll_add_at_begin(t_list *tail, int node_value);
@@ -64,6 +73,6 @@ int		get_rev_rotate_count(t_list *list);
 int		sort_algo(t_list **tail);
 int		insert_back(t_list **a, t_list **b, int *a_min, int *a_max);
 
-void	print_list(t_list *tail); //remove
+void	print_list(t_list *tail);
 
 #endif

@@ -37,7 +37,6 @@ t_list *rotate_list (t_list *tail)
 	tail -> tail_count = 0;
 	tail -> total = 0;
 	tail = tail -> next;
-
 	return (tail);
 }
 
@@ -131,24 +130,7 @@ int    find_insert_pos(t_list *tail, int inst_val) //Apr 2nd WIP
         return (count);
 }
 
-int search_value(t_list *tail, int num)
-{
-	int count;
-	t_list *temp;
-	
-	if(!tail || !(tail -> next))
-		return (0);
-	temp = tail -> next;
-	count = 1;
-	do
-       	{
-		if (temp -> content == num)
-			return (count);
-		temp = temp -> next;
-		count++;
-	}while (temp -> next != tail -> next -> next);
-	return (0);
-}
+
 
 int find_min_max_pos(t_list *tail)
 {
@@ -211,157 +193,24 @@ int find_min_max_pos(t_list *tail)
 
 
 
-int get_rotate_count(t_list *list) // need to update direction, also need to handle when the count of the list is two. suggestion: add a swap_a() followed by a push_b();
+
+
+
+int search_value(t_list *tail, int num)
 {
-	int	min_pos;
-	int min;
-	int	new_end;
-	int new_start;
+	int count;
 	t_list *temp;
-	int 	count;
-	int last_min_index;
-	int direction; 
-	t_list *prev_min;
-
-	if(!list || !(list -> next))
-		return (0);
-
-	new_end = list -> tail_count;
-	//if (min_pos == 2)
-		//swap_b()
-	//printf("new end: %d, tail count: %d \n", new_end, list -> tail_count);
-
-	prev_min = NULL;  
-
-	min_pos = 1;
-	last_min_index = 1;
-	count = 1;
 	
-	temp = list -> next;
-
-		do {
-			min = temp -> content;
-
-
-				min_pos = 1;// depends on what logic is used for count. has to match with count logic
-
-			
-			do
-			{
-				if (temp -> content < min)
-				{
-					min = temp -> content;
-					min_pos = count;
-					prev_min = temp;
-
-					//printf("found a min: %d min position: %d new end: %d \n", min, min_pos, new_end);
-				}
-				temp = temp -> next;
-				
-				count++;
-			}while (count < new_end);
-			
-			temp = NULL;
-			new_end = min_pos; //or total_list count
-				count = 1; // can update count or can later add the min_pos to this. 
-				//min_pos = 1;// depends on what logic is used for count. has to match with count logic
-				temp = list -> next; // or have a different variable to point to min_pos and get the next; 
-
-			//printf("check value %d: min_pos: %d\n", list -> check_val, min_pos);
-			if (min > list -> check_val)
-			{
-				break;
-			}
-			last_min_index = min_pos;
-
-			/*
-			if (min > avg_lower)
-				break;
-				*/
-
-
-		}while (min_pos > 1 && min_pos <= list -> tail_count);
-
- 
-return (last_min_index);
-
-}
-
-
-int get_rev_rotate_count(t_list *list) 
-{
-	int	min_pos;
-	int min;
-	int	new_end;
-	int new_start;
-	t_list *temp;
-	int 	count;
-	int last_min_index;
-	int direction; 
-	t_list *prev_min;
-
-	if(!list || !(list -> next))
+	if(!tail || !(tail -> next))
 		return (0);
-
-	new_end = list -> tail_count;
-
-//	printf("new end: %d, tail count: %d \n", new_end, list -> tail_count);
-
-	prev_min = NULL;  
-
-	min_pos = 1;
-
-	last_min_index = 1;
+	temp = tail -> next;
 	count = 1;
-	
-	temp = list -> next;
-
-		do {
-			min = temp -> content;
-
-			//printf("current temp: %d \n", min);
-			//min_pos = 1;
-			
-			do
-			{
-				if (temp -> content <= min)
-				{
-					min = temp -> content;
-					min_pos = count;
-					prev_min = temp;
-
-					//printf("found a min: %d min position: %d new end: %d direction: %d\n", min, min_pos, new_end, direction);
-				}
-				if (temp -> content == min)
-					prev_min = temp;
-				temp = temp -> next;
-				
-				count++;
-			}while (count <= new_end);
-			
-			temp = NULL;
-
-				//new_end = list -> tail_count; //or total_list count
-				count = min_pos + 1; // can update count or can later add the min_pos to this. 
-				//min_pos = min_pos + 1;// depends on what logic is used for count. has to match with count logic
-				temp = prev_min -> next; // or have a different variable to point to min_pos and get the next; 
-			
-			//printf("check value %d: min_pos: %d count: %d\n", list -> check_val, min_pos, count);
-			if (min > list -> check_val)
-			{
-				break;
-			}
-			last_min_index = min_pos;
-
-
-				
-
-
-		}while (min_pos > 1 && min_pos < list -> tail_count);
-
-
- //printf("last min index : %d , total : %d", last_min_index, list -> tail_count);
-return ((list -> tail_count ) -last_min_index );
-
+	do
+    {
+		if (temp -> content == num)
+			return (count);
+		temp = temp -> next;
+		count++;
+	} while (temp -> next != tail -> next -> next);
+	return (0);
 }
-
