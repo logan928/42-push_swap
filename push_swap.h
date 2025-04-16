@@ -14,6 +14,12 @@
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
+# include <stdarg.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <stddef.h>
+# include <limits.h>
+# include <stdint.h>
 
 typedef struct s_list
 {
@@ -38,6 +44,7 @@ typedef struct min_max_values
 	int	last_min_index;
 }	t_limits;
 
+int	ft_printf(const char *format, ...);
 t_list	*cll_init(t_list *tail, int f_value);
 t_list	*cll_add_at_end(t_list *tail, int node_value);
 t_list	*cll_add_at_begin(t_list *tail, int node_value);
@@ -46,7 +53,7 @@ void	delete_list(t_list **tail);
 t_list	*cll_delete_top(t_list *tail);
 int		*get_top_value(t_list *tail);
 int		compare_top_two(t_list *tail);
-int		compare_top_bottom(t_list *tail);
+int		cmp_btm(t_list *tail);
 void	delete_list(t_list **tail);
 
 int		push_top(t_list **dest, t_list **src);
@@ -62,7 +69,7 @@ int		rev_rotate_b(t_list **a, t_list **b, int forced);
 void	swap_start(t_list **tail);
 t_list	*rotate_list(t_list *tail);
 t_list	*rev_rotate_list(t_list *tail);
-int		ccl_count(t_list *tail);
+int		l_count(t_list *tail);
 int		search_value(t_list *tail, int num);
 int		push_count(t_list *tail, int mul);
 int		find_insert_pos(t_list *tail, int inst_val);

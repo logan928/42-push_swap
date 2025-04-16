@@ -20,7 +20,7 @@ int	compare_top_two(t_list *tail)
 	return (tail -> next -> content > tail -> next -> next -> content);
 }
 
-int	compare_top_bottom(t_list *tail)
+int	cmp_btm(t_list *tail)
 {
 	if (!tail || tail == tail -> next)
 		return (0);

@@ -42,7 +42,7 @@ int	push_a (t_list **dest, t_list **src)
 	int count;
 
 	count = push_top(dest, src);//change
-	printf("pa\n");
+	ft_printf("pa\n");
 	return (count);
 }
 
@@ -51,23 +51,23 @@ int	push_b (t_list **dest, t_list **src)
 	int count;
 
 	count = push_top(dest, src);//change
-	printf("pb\n");
+	ft_printf("pb\n");
 	return (count);
 }
 
 int	swap_a(t_list **a, t_list **b)
 {
-	if (ccl_count(*a) > 1 && compare_top_two(*a) && ccl_count(*b) >1 && !compare_top_two(*b))
+	if (l_count(*a) > 1 && compare_top_two(*a) && l_count(*b) >1 && !compare_top_two(*b))
 	{
 		swap_start(a);
 		swap_start(b);
-		printf("%s\n", "ss");//change
+		ft_printf("%s\n", "ss");//change
 		return (1);
 	}
-	else if (ccl_count (*a) > 1 && compare_top_two(*a))
+	else if (l_count (*a) > 1 && compare_top_two(*a))
 	{
 		swap_start(a);
-		printf("%s\n", "sa");//change
+		ft_printf("%s\n", "sa");//change
 		return (1);
 	}
 	return (0);	
@@ -83,112 +83,13 @@ int     swap_b(t_list **a, t_list **b)
                 return (1);
         }
 */
-	if (ccl_count (*b) > 1 && !compare_top_two(*b))
+	if (l_count (*b) > 1 && !compare_top_two(*b))
         {
 		swap_start(b);
-               	printf("%s\n", "sb");//change
-                return (1);
-        }
-        return (0);
-}
-
-int     rotate_a(t_list **a, t_list **b, int forced)
-{
-        if (ccl_count(*a) > 1 && forced)
-        {
-		*a = rotate_list(*a);
-                printf("%s\n", "ra");//chagne
-                return (1);
-        }
-	else if (ccl_count(*a) > 1 && compare_top_bottom(*a) && ccl_count(*b) > 1 && !compare_top_bottom(*b))
-        {
-                *a = rotate_list (*a);
-		*b = rotate_list (*b);
-		printf("%s\n", "rr");//change
-                return (1);
-        }
-        else if (ccl_count(*a) > 1 &&  compare_top_bottom(*a))
-        {
-		//printf("Before rotation: %p\n", (void*)*a);//remove
-		*a = rotate_list(*a);
-                printf("%s\n", "ra");//chagne
-		//printf("After rotation: %p\n", (void*)*a);//remove
-                return (1);
-        }
-        return (0);
-}
-
-int     rotate_b(t_list **a, t_list **b, int forced)
-{
-/*        if (compare_top_bottom(*a) && !compare_top_bottom(*b))
-        {
-                *a = rotate_list (*a);
-		*b = rotate_list (*b);
-		printf("%s\n", "rr");//chagne
-                return (1);
-        }
-*/      
-        if (ccl_count(*b) > 1 &&  forced)
-        {
-                *b = rotate_list(*b);
-                printf("%s\n", "rb");//change
-                return (1);
-        }
-        else if (!compare_top_bottom(*b))
-        {
-		*b = rotate_list(*b);
-                printf("%s\n", "rb");//change
+               	ft_printf("%s\n", "sb");//change
                 return (1);
         }
         return (0);
 }
 
 
-int     rev_rotate_a(t_list **a, t_list **b, int forced)
-{
-        if (ccl_count(*a) > 1 &&  forced)
-        {
-		*a = rev_rotate_list(*a);
-                printf("%s\n", "rra");//change
-                return (1);
-	}
-	else if (ccl_count(*a) > 1 && compare_top_bottom(*a) && ccl_count(*b) > 1 && !compare_top_bottom(*b))
-        {
-                *a = rev_rotate_list (*a);
-		*b = rev_rotate_list (*b);
-		printf("%s\n", "rrr");//change
-                return (1);
-        }
-        else if (ccl_count(*a) > 1 &&  compare_top_bottom(*a))
-        {
-		*a = rev_rotate_list(*a);
-                printf("%s\n", "rra");//change
-                return (1);
-        }
-        return (0);
-}
-
-int     rev_rotate_b(t_list **a, t_list **b, int forced)
-{
-/*        if (ccl_count(*a) > 1 && compare_top_bottom(*a) && ccl_count(*b) > 1 && !compare_top_bottom(*b))
-        {
-                *a = rev_rotate_list (*a);
-		*b = rev_rotate_list (*b);
-		printf("%s\n", "rrr");//change
-                return (1);
-        }
-*/
-        if (ccl_count(*b) > 1 &&  forced)
-        {
-                *b = rev_rotate_list(*b);
-                printf("%s\n", "rrb");//change
-                return (1);
-        }
-        else if (ccl_count(*b) > 1 && !compare_top_bottom(*b))
-        {
-		*b = rev_rotate_list(*b);
-                printf("%s\n", "rrb");//change
-                return (1);
-        }
-        return (0);
-}

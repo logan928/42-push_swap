@@ -61,7 +61,7 @@ t_list *rev_rotate_list(t_list *tail)
 	return (temp);
 }
 
-int	ccl_count(t_list *tail) //checked
+int	l_count(t_list *tail) //checked
 {
 	int	count;
 	t_list	*temp;
