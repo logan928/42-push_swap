@@ -175,7 +175,7 @@ int find_min_max_pos(t_list *tail)
 			below_avg_total += temp -> content;
 			++below_avg_count;
 		}
-		if (count < (tail -> tail_count)/2)
+		if (count <= (tail -> tail_count)/2)
 			{
 				h_total += temp -> content;
 			}

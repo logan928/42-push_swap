@@ -13,10 +13,10 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-/*
+
 static void	rotate(t_list *list, t_limits *rl, t_list *temp, t_list *prev_min)
 {
-	do
+	while  (rl -> min_pos > 1 && rl -> min_pos <= list -> tail_count)
 	{
 		rl -> min = temp -> content;
 		rl -> min_pos = 1;
@@ -29,9 +29,9 @@ static void	rotate(t_list *list, t_limits *rl, t_list *temp, t_list *prev_min)
 				prev_min = temp;
 			}
 			temp = temp -> next;
-			rl -> count++;
+			(rl -> count)++;
 		}
-	       	while (rl -> count < rl -> new_end);
+	    while (rl -> count < rl -> new_end);
 		temp = NULL;
 		rl -> new_end = rl -> min_pos;
 		rl -> count = 1;
@@ -39,10 +39,10 @@ static void	rotate(t_list *list, t_limits *rl, t_list *temp, t_list *prev_min)
 		if (rl -> min > list -> check_val)
 			break;
 		rl -> last_min_index = rl -> min_pos;
-	} while (rl -> min_pos > 1 && rl -> min_pos <= list -> tail_count);
+	} 
 }
-*/
 
+/*
 	static void	rotate(t_list *list, t_limits *rl, t_list *temp, t_list *prev_min)
 	{
 		int	loop = 1;
@@ -78,7 +78,7 @@ static void	rotate(t_list *list, t_limits *rl, t_list *temp, t_list *prev_min)
 		}
 	}
 	
-
+*/
 static void rev_rotate(t_list *list, t_limits *rl, t_list *temp, t_list *prev_min)
 {
 	do {
@@ -114,13 +114,14 @@ int	get_rotate_count(t_list *list)
 	if (!list || !(list -> next))
 		return (0);
 	rl.new_end = list -> tail_count;
-	rl.min_pos = 1;
+	rl.min_pos = list -> min_pos;
 	rl.last_min_index = 1;
 	rl.count = 1;
 	temp = list -> next;
-	prev_min = NULL;  
-	rotate(list, &rl, temp, prev_min);
-    return (rl.last_min_index);
+	prev_min = NULL;
+	if (list -> tail_count > 1 || list -> min_pos != 1)  
+		rotate(list, &rl, temp, prev_min);
+	return (rl.last_min_index);
 }
 
 int get_rev_rotate_count(t_list *list) 

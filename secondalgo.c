@@ -20,14 +20,14 @@ int     sort_algo(t_list **tail)
 		int		a_min;
 		int		a_max;
 		int		min_position;
-		int max_p;
-		int min_p;
+		int 	max_p;
+		int 	min_p;
 		int		max_b;
 		int		min_b;
 		int		rotate;
-		int middle; 
-		int max_pa;
-		int min_pa;
+		int 	middle; 
+		int		max_pa;
+		int 	min_pa;
 		int		max_a;
 		int		min_a;
 
@@ -71,7 +71,9 @@ while (tail_b -> tail_count > 1)
 	push_a(tail, &tail_b);
 
 	if ((*tail) -> next -> content == check_min)
+	{
 			success += rotate_a(tail, &tail_b, 1);
+	}
 	
 	//print_list(tail_b);
 
@@ -88,7 +90,8 @@ if (tail_b -> tail_count == 1)
 //*****************this is the final rotation to get min value which is now in the middle to the top */	
 
 
-
+//print_list(*tail);
+	//print_list(tail_b);
 	
 	find_min_max_pos(*tail);
 	min_position = search_value(*tail, (*tail) -> min);
@@ -108,7 +111,9 @@ if (tail_b -> tail_count == 1)
 		while (min_position -1 > 0)
 		{
 			rotate_a(tail, &tail_b, 1);
-			min_position++;
+			min_position--;
+			if (min_position > 100)
+				break;
 		}
 		
 	}
@@ -116,11 +121,13 @@ if (tail_b -> tail_count == 1)
 	
 
 //	printf("final list \n");
-//	print_list(*tail);
+	//print_list(*tail);
+	//print_list(tail_b);
 	delete_list(&tail_b);//position of delet_list and following delete tail needs to be checked.
         if(tail_b)
         {
                 free(tail_b);
+
                 tail_b = NULL;
         }
         return (success);
@@ -166,9 +173,9 @@ do{
 		//tate_a(a, b, 0);
 		find_min_max_pos(*a);
         total_count = (*a) -> tail_count;
-	//printf("count: %d, total: %lld, half-total: %d, min-val: %d, min-pos: %d \n", (*a) -> tail_count, (*a) -> total, (*a) -> half_total, (*a) -> min, (*a) -> min_pos);
+	//printf("count: %d, total: %lld, half-total: %d, min-val: %d, min-pos: %d check-val %d\n", (*a) -> tail_count, (*a) -> total, (*a) -> half_total, (*a) -> min, (*a) -> min_pos, (*a) -> check_val);
 	//print_list(*a);
-	//	print_list(*b);
+	//print_list(*b);
 
 		direction = 0;
 
