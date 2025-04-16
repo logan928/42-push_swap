@@ -208,6 +208,7 @@ do{
 		else
 		{
 			rotate_count = get_rev_rotate_count(*a);
+			//printf("rotating...: %d ######################### \n", rotate_count);
 			while (rotate_count > -1)
 			{
 				rev_rotate_a(a, b, 1);
