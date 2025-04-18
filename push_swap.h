@@ -37,14 +37,20 @@ typedef struct s_list
 
 typedef struct min_max_values
 {
-	int	min_pos;
-	int	min;
+	int min_pos;
+	int max_pos;
+	int min;
+	int max;
+	int avg;
+	int	h_total;
+	long long int below_avg_total;
+	int below_avg_count;
 	int	new_end;
 	int	count;
 	int	last_min_index;
 }	t_limits;
 
-int	ft_printf(const char *format, ...);
+int		ft_printf(const char *format, ...);
 t_list	*cll_init(t_list *tail, int f_value);
 t_list	*cll_add_at_end(t_list *tail, int node_value);
 t_list	*cll_add_at_begin(t_list *tail, int node_value);

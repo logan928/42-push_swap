@@ -132,64 +132,6 @@ int    find_insert_pos(t_list *tail, int inst_val) //Apr 2nd WIP
 
 
 
-int find_min_max_pos(t_list *tail)
-{
-	int count;
-	t_list *temp;
-	int min_pos;
-	int max_pos;
-	int max;
-	int min;
-	int avg;
-	long long int below_avg_total;
-	int below_avg_count;
-	int	h_total;
-	
-	if(!tail || !(tail -> next))
-		return (0);
-	temp = tail -> next;
-	count = 1;
-	max = temp -> content;
-	min = temp -> content;
-	max_pos = 1;
-	min_pos = 1;
-	below_avg_count = 0;
-	below_avg_total = 0;
-	avg = (int) (tail -> total / tail -> tail_count );
-	h_total = 0;
-
-	do
-    {
-		if (temp -> content > max)
-		{
-			max = temp -> content;
-			max_pos = count;
-		}
-		else if (temp -> content < min)
-		{
-			min = temp -> content;
-			min_pos = count;
-		}
-		if (temp -> content < avg)
-		{
-			below_avg_total += temp -> content;
-			++below_avg_count;
-		}
-		if (count <= (tail -> tail_count)/2)
-			{
-				h_total += temp -> content;
-			}
-		temp = temp -> next;
-		count++;
-	}while (temp -> next != tail -> next -> next);
-	tail -> min = min;
-	tail -> min_pos = min_pos;
-	tail -> max = max;
-	tail -> max_pos = max_pos;
-	tail -> check_val = (int) (below_avg_total/below_avg_count);
-	tail -> half_total = h_total;
-	return (1);
-}
 
 
 
