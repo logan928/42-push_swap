@@ -84,6 +84,7 @@ int		get_rotate_count(t_list *list);
 int		get_rev_rotate_count(t_list *list);
 
 int		sort_algo(t_list **tail);
+void	populate_b(t_list **a, t_list **b);
 int		insert_back(t_list **a, t_list **b, int *a_min, int *a_max);
 
 void	print_list(t_list *tail);

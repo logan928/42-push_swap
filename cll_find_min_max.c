@@ -25,7 +25,7 @@ static void	init_min_max_values(t_limits *l_set, t_list *start_node)
 	l_set -> h_total = 0;
 }
 
-void	update_tail(t_limits mm, t_list *tail)
+static void	update_tail(t_limits mm, t_list *tail)
 {
 	tail -> min = mm.min;
 	tail -> min_pos = mm.min_pos;
@@ -38,7 +38,7 @@ void	update_tail(t_limits mm, t_list *tail)
 	tail -> half_total = mm.h_total;
 }
 
-void	update_min_max(t_limits *mm, int value, int count)
+static void	update_min_max(t_limits *mm, int value, int count)
 {
 	if (value > mm -> max)
 	{
