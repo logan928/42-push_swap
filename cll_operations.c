@@ -115,16 +115,16 @@ int    find_insert_pos(t_list *tail, int inst_val) //Apr 2nd WIP
                 return (0);
         if (tail -> next == tail)
                 return (1);
-	stack_size = tail -> tail_count;
-        temp = tail;
-	count = 1;
-        while (stack_size > 0)
+		stack_size = tail -> tail_count;
+        temp = tail -> next;
+		count = 1;
+        while (stack_size > 1)
         {
-		if((inst_val > (temp -> content)) && ( (temp -> next -> content) > inst_val) )
-			return (count);
-		temp = temp -> next;
-		count++;
-		stack_size--;
+			if((inst_val < (temp -> content)) && ( (temp -> next -> content) < inst_val) )
+				return (count);
+			temp = temp -> next;
+			count++;
+			stack_size--;
 	//printf("tail: %d stack:%d count:%d \n", tail -> tail_count, stack_size, count);
         }
         return (count);

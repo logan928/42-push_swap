@@ -122,7 +122,7 @@ if (tail_b -> tail_count == 1)
 
 	
 
-//	printf("final list \n");
+	//printf("final list \n");
 	//print_list(*tail);
 	//print_list(tail_b);
 	delete_list(&tail_b);//position of delet_list and following delete tail needs to be checked.

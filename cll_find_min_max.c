@@ -57,6 +57,8 @@ static void	update_min_max(t_limits *mm, int value, int count)
 	}
 }
 
+
+
 int	find_min_max_pos(t_list *tail)
 {
 	t_list		*temp;

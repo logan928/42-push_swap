@@ -48,7 +48,17 @@ typedef struct min_max_values
 	int	new_end;
 	int	count;
 	int	last_min_index;
+
 }	t_limits;
+
+typedef struct  check_vals
+{
+	int first_check_val;
+	int	first_check_pos;
+	int	last_check_val;
+	int	last_check_pos;
+} min_check_vals;
+
 
 int		ft_printf(const char *format, ...);
 t_list	*cll_init(t_list *tail, int f_value);
