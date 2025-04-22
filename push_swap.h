@@ -93,6 +93,8 @@ int		find_insert_pos(t_list *tail, int inst_val);
 int		find_min_max_pos(t_list *tail);
 int		get_rotate_count(t_list *list);
 int		get_rev_rotate_count(t_list *list);
+void	update_checks(min_check_vals *cv, t_list *tail, int count, int first_found);
+void	update_check_vals(min_check_vals *cv, t_list *tail);
 
 int		sort_algo(t_list **tail);
 void	populate_b(t_list **a, t_list **b);
