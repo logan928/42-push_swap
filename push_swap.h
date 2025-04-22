@@ -71,6 +71,7 @@ int		*get_top_value(t_list *tail);
 int		compare_top_two(t_list *tail);
 int		cmp_btm(t_list *tail);
 void	delete_list(t_list **tail);
+void	optimize_a(t_list **a, t_list **b);
 
 int		push_top(t_list **dest, t_list **src);
 int		push_a(t_list **dest, t_list **src);

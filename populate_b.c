@@ -13,10 +13,33 @@
 #include <stdio.h>
 #include "push_swap.h"
 
+static void	update_checks(min_check_vals *cv, t_list *tail, int count, int first_found)
+{
+	t_list	*temp;
+
+	temp = tail -> next;
+	while (count <= tail -> tail_count)
+	{
+		if (temp -> content < tail -> check_val)
+		{
+			if (first_found ==0)
+			{
+				cv->first_check_val = temp -> content;
+				cv -> first_check_pos = count;
+				first_found = 1;
+			}
+			cv -> last_check_pos = count;
+			cv -> last_check_val = temp -> content;
+
+		}
+		temp = temp -> next;
+		count++;
+	}
+}
+
 static void	update_check_vals(min_check_vals *cv, t_list *tail)
 {
 	int count;
-	int	check;
 	t_list	*temp;
 	int	first_found; 
 
@@ -24,33 +47,8 @@ static void	update_check_vals(min_check_vals *cv, t_list *tail)
 		return;
 	temp = tail -> next;
 	count = 1;
-	check = tail -> check_val;
 	first_found = 0;
-
-	while (count <= tail -> tail_count)
-	{
-		if (temp -> content < check)
-		{
-			if (first_found ==0)
-			{
-				//printf("first: %d \n", temp -> content);
-				cv->first_check_val = temp -> content;
-				cv -> first_check_pos = count;
-				cv -> last_check_pos = count;
-				cv -> last_check_val = temp -> content;
-				first_found = 1;
-			}
-			else
-			{
-				//printf("last: %d \n", temp -> content);
-				cv -> last_check_pos = count;
-				cv -> last_check_val = temp -> content;
-			}
-		}
-		temp = temp -> next;
-		count++;
-	}
-
+	update_checks(cv, tail, count, first_found);
 }
 
 void populate_b(t_list **a, t_list **b)
@@ -70,35 +68,6 @@ void populate_b(t_list **a, t_list **b)
     {
 		find_min_max_pos(*a);
 		update_check_vals(&cv, *a);
-		//print_list(*a);
-		//printf("count: %d, total: %lld, half-total: %d, min-val: %d, min-pos: %d check-val %d\n", (*a) -> tail_count, (*a) -> total, (*a) -> half_total, (*a) -> min, (*a) -> min_pos, (*a) -> check_val);
-	//print_list(*a);
-	//printf("fcv: %d fcp: %d, lcv: %d, lcp %d \n", cv.first_check_val, cv.first_check_pos, cv.last_check_val, cv.last_check_pos);
-	
-	//print_list(*a);
-	//	printf("count: %d, total: %lld, half-total: %d, min-val: %d, min-pos: %d check-val %d\n", (*a) -> tail_count, (*a) -> total, (*a) -> half_total, (*a) -> min, (*a) -> min_pos, (*a) -> check_val);
-		
-		/* old 1
-		direction = 0;
-
-		if ((long long int)((*a) -> half_total) < ((long long int)((*a) -> total)/2))
-		{
-			//printf("1\n");
-			direction = 1;
-		}
-		if ( ((*a) -> min_pos) < ((int)((*a) -> tail_count)/4) )
-		{
-			//printf("2\n");
-			direction = 1;
-		}
-
-		if ( ((*a) -> min_pos) > ((int)((*a) -> tail_count) * 4/5) )
-		{
-			//printf("3\n");
-			direction = 0;
-		}
-
-		*/
 
 		direction = 0;
 		if (cv.first_check_pos == ((*a) -> tail_count - cv.last_check_pos) )
@@ -108,7 +77,6 @@ void populate_b(t_list **a, t_list **b)
 		}
 		else if (cv.first_check_pos < ((*a) -> tail_count - cv.last_check_pos))
 			direction = 1;
-		
 		if (cv.first_check_pos == 1)
 			direction = 1;
 		
@@ -155,7 +123,7 @@ void populate_b(t_list **a, t_list **b)
 		//print_list(*b);
 		
 		int direction = 0;
-		int rotate_limit = 3;
+		int rotate_limit = 2;
 
 		if ((*b) -> tail_count > 1 )
 		{
@@ -207,32 +175,11 @@ void populate_b(t_list **a, t_list **b)
 		{
 			push_b(b, a);
 			swap_b(a, b);
-		//print_list(*b);
 		}
 
 		//print_list(*b);
 
 		//printf("------------------------- \n");
-		
-		if ((*b) -> tail_count > 1  )
-		{
-			find_min_max_pos(*b);
-			//rotate_b(a, b, 1);
-		}
-		/*
-		if ((*b) -> tail_count > 1 && (*b) -> next -> content < (*b) -> check_val )
-		{
-			//find_min_max_pos(*b);
-			rotate_b(a, b, 1);
-			
-		}
-
-		*/
-
-
-		//swap_b(a, b);
-		
-
 		
 
 }
