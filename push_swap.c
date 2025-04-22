@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 
 		//printf("%d \n", argc);
 	int i= -1; //delete
-	i = sort_algo(&tail);
+	sort_algo(&tail);
 //		printf("%d \n", i); 
 //	printf("%d \n", tail -> content); 
 

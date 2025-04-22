@@ -96,7 +96,7 @@ int		get_rev_rotate_count(t_list *list);
 void	update_checks(min_check_vals *cv, t_list *tail, int count, int first_found);
 void	update_check_vals(min_check_vals *cv, t_list *tail);
 
-int		sort_algo(t_list **tail);
+void		sort_algo(t_list **tail);
 void	populate_b(t_list **a, t_list **b);
 int		insert_back(t_list **a, t_list **b, int *a_min, int *a_max);
 
