@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <unistd.h>
-# include <stdio.h>
 # include <stddef.h>
 # include <limits.h>
 # include <stdint.h>
@@ -93,6 +92,7 @@ int		find_insert_pos(t_list *tail, int inst_val);
 int		find_min_max_pos(t_list *tail);
 int		get_rotate_count(t_list *list);
 int		get_rev_rotate_count(t_list *list);
+int		rotate_count(int total_count, int max_p, int min_p);
 void	update_checks(min_check_vals *cv, t_list *tail, int count, int first_found);
 void	update_check_vals(min_check_vals *cv, t_list *tail);
 

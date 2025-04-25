@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 static void	rotate(t_list *list, t_limits *rl, t_list *temp, t_list *pr_min)
 {

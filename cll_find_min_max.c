@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 static void	init_min_max_values(t_limits *l_set, t_list *start_node)
 {

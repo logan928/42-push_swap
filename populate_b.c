@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "push_swap.h"
 
 static void	rotate_push_b(t_list **a, t_list **b, int r_pos, int direction)

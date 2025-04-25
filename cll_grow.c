@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 t_list	*cll_init(t_list *tail, int f_value)
 {

@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "push_swap.h"
 
 void	update_checks(min_check_vals *cv, t_list *t, int count, int first_found)

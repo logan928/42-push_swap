@@ -30,7 +30,8 @@ int	main(int argc, char *argv[])
 		return (1);
 	if (!validate_list(argc, argv, &tail))
 		return (1);
-	sort_algo(&tail);
+	if (tail -> tail_count > 5)
+		sort_algo(&tail);
 	delete_list(&tail);
 }
 

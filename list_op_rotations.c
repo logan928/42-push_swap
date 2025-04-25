@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 int	rotate_a(t_list **a, t_list **b, int forced)
 {
