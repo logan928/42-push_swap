@@ -106,3 +106,28 @@ int	get_rev_rotate_count(t_list *list)
 		rev_rotate(list, &rl, temp, pr_min);
 	return ((list -> tail_count) - rl.last_min_index);
 }
+
+int	find_insert_pos(t_list *tail, int i_val)
+{
+	int		count;
+	int		stack_size;
+	t_list	*temp;
+
+	count = 0;
+	if (!tail || !(tail -> next))
+		return (0);
+	if (tail -> next == tail)
+		return (1);
+	stack_size = tail -> tail_count;
+	temp = tail -> next;
+	count = 1;
+	while (stack_size > 1)
+	{
+		if ((i_val < (temp -> content)) && ((temp -> next -> content) < i_val))
+			return (count);
+		temp = temp -> next;
+		count++;
+		stack_size--;
+	}
+	return (count);
+}
