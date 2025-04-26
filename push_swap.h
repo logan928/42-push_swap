@@ -81,6 +81,7 @@ int		rotate_a(t_list **a, t_list **b, int forced);
 int		rotate_b(t_list **a, t_list **b, int forced);
 int		rev_rotate_a(t_list **a, t_list **b, int forced);
 int		rev_rotate_b(t_list **a, t_list **b, int forced);
+int		check_sorted(t_list **tail);
 
 void	swap_start(t_list **tail);
 t_list	*rotate_list(t_list *tail);
@@ -99,6 +100,7 @@ void	update_check_vals(min_check_vals *cv, t_list *tail);
 void		sort_algo(t_list **tail);
 void	populate_b(t_list **a, t_list **b);
 int		insert_back(t_list **a, t_list **b, int *a_min, int *a_max);
+void	sort_algo_3(t_list **a);
 
 void	print_list(t_list *tail);
 

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 int		validate_list(int argc, char *argv[], t_list **tail);
 int		validate_int(char *arg_str);
@@ -20,19 +21,31 @@ int		parse_int(char *arg_str);
 int	main(int argc, char *argv[])
 {
 	t_list	*tail;
-	int		i;
+	int		exit_code;
 
+	exit_code = 1;
 	if (argc < 2)
 		return (1);
 	tail = (t_list *)(malloc(sizeof(t_list)));
-	tail -> next = NULL;
 	if (!tail)
 		return (1);
-	if (!validate_list(argc, argv, &tail))
-		return (1);
-	if (tail -> tail_count > 5)
-		sort_algo(&tail);
+	tail -> next = NULL;
+
+	if (validate_list(argc, argv, &tail) == 1)
+	{
+		if (check_sorted(&tail) != 1)
+		{
+			find_min_max_pos(tail);
+			if (tail -> tail_count < 4)
+				sort_algo_3(&tail);
+			else
+				sort_algo(&tail);
+		}
+		exit_code = 0;
+	}
+	print_list(tail);
 	delete_list(&tail);
+	return (exit_code);
 }
 
 int	validate_list(int argc, char *argv[], t_list **tail)
@@ -43,17 +56,19 @@ int	validate_list(int argc, char *argv[], t_list **tail)
 	i = 1;
 	while (i < argc)
 	{
-		if (!validate_int(argv[i]))
+		if (validate_int(argv[i]) == 0)
 		{
-			ft_printf ("%d %d %s  Error\n", argc, i, argv[i]);//Change this to handle error
+			ft_printf ("Error1\n");//Change this to handle error
 			return (0);
 		}
 		num = parse_int(argv[i]);
-		if (!search_value(*tail, num))
+		if (((*tail)-> next == NULL || (*tail)-> content != num) && search_value(*tail, num) == 0 ) // add tail = 1 conditions
+		{
 			*tail = init_cll(tail, num);
+		}
 		else
 		{
-			ft_printf ("%d %d %s  Error\n", argc, i, argv[i]);//Change this to handle error
+			printf ("a %d Error2\n", num);//Change this to handle error
 			return (0);
 		}
 		i++;
@@ -113,8 +128,7 @@ t_list	*init_cll(t_list **tail, int num)
 	return (*tail);
 }
 
-/*
-#include <stdio.h>
+
 void print_list(t_list *tail)
 {	t_list *temp;
 
@@ -132,4 +146,4 @@ void print_list(t_list *tail)
 	printf("\n");
 
 }
-*/
+

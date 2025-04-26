@@ -11,13 +11,13 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 void	sort_algo_3(t_list **a)
 {
     if ((*a)-> min_pos == 1)
     {
-        *a = rev_rotate_list(*a);
-		ft_printf("%s\n", "rra");
+        rev_rotate_a(a, NULL, 1);
         swap_start(a);
 		ft_printf("%s\n", "sa");
     }
@@ -28,16 +28,15 @@ void	sort_algo_3(t_list **a)
     }
     else if ((*a)-> max_pos == 1)
     {
-        *a = rotate_list(*a);
-		ft_printf("%s\n", "ra");
-        swap_start(a);
-		ft_printf("%s\n", "sa");
+        rotate_a(a, NULL, 1);
+        if (check_sorted(a) != 1)
+        {
+            swap_start(a);
+            ft_printf("%s\n", "sa");
+        }
     }
     else
-    {
-        *a = rev_rotate_list(*a);
-		ft_printf("%s\n", "rra");
-    }
+        rev_rotate_a(a, NULL, 1);
 }
 
 void	sort_algo_5(t_list **a)

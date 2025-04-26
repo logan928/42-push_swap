@@ -11,11 +11,13 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 void	swap_start(t_list **tail)
 {
 	int	temp;
 
+	temp = 0;
 	if (*tail && (*tail)-> next != *tail)
 	{
 		temp = (*tail)-> next -> next -> content;
@@ -88,36 +90,16 @@ int	search_value(t_list *tail, int num)
 		return (0);
 	temp = tail -> next;
 	count = 1;
-	while (temp -> next != tail -> next -> next)
+	
+	while (tail -> tail_count > 1)
 	{
 		if (temp -> content == num)
 			return (count);
 		temp = temp -> next;
+		if (temp == tail -> next)
+			return (0);
 		count++;
 	}
 	return (0);
 }
-/*
-int     push_count(t_list *tail, int mul) 
-{
-        int     count;
-        t_list  *temp;
 
-        count = 0;
-        if (!tail || !(tail -> next))
-                return (0);
-        if (tail -> next == tail)
-                return (1);
-        temp = tail -> next;
-	count = 1;
-        while (temp != tail)
-        {
-		if(((temp -> content) - (temp -> next -> content)) * mul < 0)
-			count++;
-		else
-			return (count);
-                temp = temp -> next;
-        }
-        return (count);
-}
-*/
