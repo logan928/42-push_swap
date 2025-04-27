@@ -65,7 +65,7 @@ int	swap_a(t_list **a, t_list **b)
 	return (0);
 }
 
-int	swap_b(t_list **a, t_list **b)
+int	swap_b(t_list **b)
 {
 	if (l_count (*b) > 1 && !compare_top_two(*b))
 	{

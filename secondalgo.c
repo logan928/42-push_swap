@@ -48,7 +48,7 @@ void	rotate_push_a(t_list **tail, t_list **tb, int rotate, int check_min)
 	{
 		while (rotate > 1)
 		{
-			rotate_b(tail, tb, 1);
+			rotate_b(tb, 1);
 			rotate--;
 		}
 	}
@@ -57,7 +57,7 @@ void	rotate_push_a(t_list **tail, t_list **tb, int rotate, int check_min)
 		rotate *= -1;
 		while (rotate + 1 > 0)
 		{
-			rev_rotate_b(tail, tb, 1);
+			rev_rotate_b(tb, 1);
 			rotate--;
 		}
 	}

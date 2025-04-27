@@ -18,21 +18,21 @@ static void	rotate_push_b(t_list **a, t_list **b, int r_pos, int direction)
 	{
 		push_b(b, a);
 		if ((*b)-> next -> content < (*b)-> min)
-			rotate_b(a, b, 0);
+			rotate_b(b, 0);
 	}
 	else if (r_pos == 1 && direction == 0)
 	{
 		push_b(b, a);
-		swap_b(a, b);
+		swap_b(b);
 	}
 	else
 	{
 		while (r_pos > 0 && r_pos <= 2)
 		{
 			if (direction == 0)
-				rotate_b(a, b, 1);
+				rotate_b(b, 1);
 			else
-				rev_rotate_b(a, b, 1);
+				rev_rotate_b(b, 1);
 			r_pos--;
 		}
 		push_b(b, a);
@@ -93,7 +93,7 @@ void	insert_b(t_list **a, t_list **b, int r_pos, int direction)
 	else
 	{
 		push_b(b, a);
-		swap_b(a, b);
+		swap_b(b);
 	}
 }
 
@@ -104,6 +104,7 @@ void	populate_b(t_list **a, t_list **b)
 	min_check_vals	cv;
 
 	direction = 0;
+	(*b)-> tail_count = 0;
 	while ((*a)-> tail_count > 1)
 	{
 		find_min_max_pos(*a);

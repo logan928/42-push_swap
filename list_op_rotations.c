@@ -36,7 +36,7 @@ int	rotate_a(t_list **a, t_list **b, int forced)
 	return (0);
 }
 
-int	rotate_b(t_list **a, t_list **b, int forced)
+int	rotate_b(t_list **b, int forced)
 {
 	if (l_count(*b) > 1 && forced)
 	{
@@ -77,7 +77,7 @@ int	rev_rotate_a(t_list **a, t_list **b, int forced)
 	return (0);
 }
 
-int	rev_rotate_b(t_list **a, t_list **b, int forced)
+int	rev_rotate_b(t_list **b, int forced)
 {
 	if (l_count(*b) > 1 && forced)
 	{

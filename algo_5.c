@@ -78,7 +78,7 @@ void	sort_algo_5(t_list **a)
     sort_algo_3(a);
     find_min_max_pos(tail_b);
     if (tail_b -> min_pos != 1)
-        swap_b(a, &tail_b);
+        swap_b(&tail_b);
     rotate = tail_b -> tail_count;
     while (rotate > 0)
     {

@@ -60,7 +60,7 @@ int	validate_list(int argc, char *argv[], t_list **tail)
 	{
 		if (validate_int(argv[i]) == 0)
 		{
-			ft_printf ("Error1\n");//Change this to handle error
+			ft_printf ("Error\n");//Change this to handle error
 			return (0);
 		}
 		num = parse_int(argv[i]);
@@ -70,7 +70,7 @@ int	validate_list(int argc, char *argv[], t_list **tail)
 		}
 		else
 		{
-			printf ("a %d Error2\n", num);//Change this to handle error
+			printf ("Error\n");//Change this to handle error
 			return (0);
 		}
 		i++;
