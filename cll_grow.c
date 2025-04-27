@@ -40,11 +40,10 @@ t_list	*cll_add_at_end(t_list *tail, int node_value)
 t_list	*cll_add_at_begin(t_list *tail, int node_value)
 {
 	t_list	*new_node;
+	int		total; 
 
 	if (!tail || !(tail -> next))
-	{
 		return (cll_init(tail, node_value));
-	}
 	new_node = (t_list *)(malloc(sizeof(t_list)));
 	if (!new_node)
 		return (NULL);
@@ -52,7 +51,8 @@ t_list	*cll_add_at_begin(t_list *tail, int node_value)
 	new_node -> content = node_value;
 	new_node -> tail_count = 0;
 	tail -> next = new_node;
-	tail -> tail_count = ++(tail -> tail_count);
+	total = tail -> tail_count;
+	tail -> tail_count = ++total;
 	tail -> total += node_value;
 	return (tail);
 }

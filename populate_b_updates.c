@@ -38,12 +38,10 @@ void	update_checks(min_check_vals *cv, t_list *t, int count, int first_found)
 void	update_check_vals(min_check_vals *cv, t_list *t)
 {
 	int		count;
-	t_list	*temp;
 	int		first_found; 
 
 	if (!t || !t->next) 
 		return ;
-	temp = t -> next;
 	count = 1;
 	first_found = 0;
 	update_checks(cv, t, count, first_found);

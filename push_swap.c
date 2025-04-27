@@ -36,14 +36,16 @@ int	main(int argc, char *argv[])
 		if (check_sorted(&tail) != 1)
 		{
 			find_min_max_pos(tail);
-			if (tail -> tail_count < 4)
+			if (tail -> tail_count <= 3)
 				sort_algo_3(&tail);
+			else if (tail -> tail_count <= 5)
+				sort_algo_5(&tail);
 			else
 				sort_algo(&tail);
 		}
 		exit_code = 0;
 	}
-	print_list(tail);
+	//print_list(tail);
 	delete_list(&tail);
 	return (exit_code);
 }
