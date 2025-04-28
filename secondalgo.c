@@ -19,7 +19,6 @@ void	min_to_top(t_list **tail, t_list **tail_b)
 {
 	int	min_position;
 
-	//min_position = search_value(*tail, (*tail)-> min);
 	min_position = (*tail)-> min_pos;
 	if (min_position > (((*tail)-> tail_count) / 2))
 	{

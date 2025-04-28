@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	update_checks(min_check_vals *cv, t_list *t, int count, int first_found)
+void	update_checks(t_min_checks *cv, t_list *t, int count, int first_found)
 {
 	t_list	*temp;
 
@@ -35,7 +35,7 @@ void	update_checks(min_check_vals *cv, t_list *t, int count, int first_found)
 	}
 }
 
-void	update_check_vals(min_check_vals *cv, t_list *t)
+void	update_check_vals(t_min_checks *cv, t_list *t)
 {
 	int		count;
 	int		first_found; 

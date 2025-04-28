@@ -89,7 +89,6 @@ int	search_value(t_list *tail, int num)
 		return (0);
 	temp = tail -> next;
 	count = 1;
-	
 	while (tail -> tail_count > 1)
 	{
 		if (temp -> content == num)
@@ -101,4 +100,3 @@ int	search_value(t_list *tail, int num)
 	}
 	return (0);
 }
-

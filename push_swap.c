@@ -30,22 +30,6 @@ int	main(int argc, char *argv[])
 		return (1);
 	tail -> next = NULL;
 	algo_select(argc, argv, tail, &exit_code);
-	/*
-	if (validate_list(argc, argv, &tail) == 1)
-	{
-		if (check_sorted(&tail) != 1)
-		{
-			find_min_max_pos(tail);
-			if (tail -> tail_count <= 3)
-				sort_algo_3(&tail);
-			else if (tail -> tail_count <= 5)
-				sort_algo_5(&tail);
-			else
-				sort_algo(&tail);
-		}
-		exit_code = 0;
-	}
-	*/
 	delete_list(&tail);
 	return (exit_code);
 }
@@ -60,17 +44,16 @@ int	validate_list(int argc, char *argv[], t_list **tail)
 	{
 		if (validate_int(argv[i]) == 0)
 		{
-			ft_printf ("Error\n");//Change this to handle error
+			ft_printf ("Error\n");
 			return (0);
 		}
 		num = parse_int(argv[i]);
-		if (((*tail)-> next == NULL || (*tail)-> content != num) && search_value(*tail, num) == 0 ) // add tail = 1 conditions
-		{
+		if (((*tail)-> next == NULL || (*tail)-> content != num) && \
+			search_value(*tail, num) == 0)
 			*tail = init_cll(tail, num);
-		}
 		else
 		{
-			printf ("Error\n");//Change this to handle error
+			printf ("Error\n");
 			return (0);
 		}
 		i++;

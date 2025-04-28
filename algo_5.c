@@ -12,6 +12,30 @@
 
 #include "push_swap.h"
 
+void	push_mins(t_list **a, t_list **b)
+{
+	int	rotate;
+
+	rotate = 0;
+	while ((*a)-> tail_count > 3)
+	{
+		find_min_max_pos(*a);
+		rotate = (*a)-> min_pos;
+		if (rotate <= (*a)-> tail_count / 2)
+		{
+			while (rotate-- > 1)
+				rotate_a(a, b, 1);
+		}
+		else
+		{
+			rotate = (*a)-> tail_count - rotate;
+			while (rotate-- > -1)
+				rev_rotate_a(a, b, 1);
+		}
+		push_b(&b, a);
+	}
+}
+
 void	sort_algo_3(t_list **a)
 {
 	if ((*a)-> tail_count == push_count(*a, 1))
@@ -43,36 +67,14 @@ void	sort_algo_3(t_list **a)
 void	sort_algo_5(t_list **a)
 {
 	t_list	*tail_b;
-	int     rotate;
+	int		rotate;
 
 	rotate = 0;
 	tail_b = (t_list *)(malloc(sizeof(t_list)));
 	if (!tail_b)
 		return ;
 	tail_b -> next = NULL;
-	while ((*a)-> tail_count > 3)
-	{
-		find_min_max_pos(*a);
-		rotate = (*a)-> min_pos;
-		if (rotate <= (*a)-> tail_count / 2)
-		{
-			while (rotate > 1)
-			{
-				rotate_a(a, &tail_b, 1);
-				rotate--;
-			}
-		}
-		else
-		{
-			rotate = (*a)-> tail_count - rotate;
-			while (rotate > -1)
-			{
-				rev_rotate_a(a, &tail_b, 1);
-				rotate--;
-			}
-		}            
-		push_b(&tail_b, a);
-	}
+	push_mins(a, &tail_b);
 	find_min_max_pos(*a);
 	sort_algo_3(a);
 	find_min_max_pos(tail_b);
@@ -86,7 +88,7 @@ void	sort_algo_5(t_list **a)
 	}
 }
 
-void algo_select(int argc, char **argv, t_list *tail, int *exit_code)
+void	algo_select(int argc, char **argv, t_list *tail, int *exit_code)
 {
 	if (validate_list(argc, argv, &tail) == 1)
 	{

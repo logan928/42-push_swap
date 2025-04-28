@@ -64,7 +64,7 @@ static void	rotate_pop_a(t_list **a, t_list **b, int direction)
 	}
 }
 
-static int	rotate_dir_a(t_list **a, int *direction, min_check_vals cv)
+static int	rotate_dir_a(t_list **a, int *direction, t_min_checks cv)
 {
 	if (cv.first_check_pos == ((*a)-> tail_count - cv.last_check_pos))
 	{
@@ -101,7 +101,7 @@ void	populate_b(t_list **a, t_list **b)
 {
 	int				direction;
 	int				r_pos;
-	min_check_vals	cv;
+	t_min_checks	cv;
 
 	direction = 0;
 	(*b)-> tail_count = 0;

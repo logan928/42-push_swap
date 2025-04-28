@@ -36,28 +36,26 @@ typedef struct s_list
 
 typedef struct min_max_values
 {
-	int min_pos;
-	int max_pos;
-	int min;
-	int max;
-	int avg;
-	int	h_total;
-	long long int below_avg_total;
-	int below_avg_count;
-	int	new_end;
-	int	count;
-	int	last_min_index;
-
+	int				min_pos;
+	int				max_pos;
+	int				min;
+	int				max;
+	int				avg;
+	int				h_total;
+	long long int	below_avg_total;
+	int				below_avg_count;
+	int				new_end;
+	int				count;
+	int				last_min_index;
 }	t_limits;
 
-typedef struct  check_vals
+typedef struct check_vals
 {
-	int first_check_val;
+	int	first_check_val;
 	int	first_check_pos;
 	int	last_check_val;
 	int	last_check_pos;
-} min_check_vals;
-
+}	t_min_checks;
 
 int		ft_printf(const char *format, ...);
 t_list	*cll_init(t_list *tail, int f_value);
@@ -70,7 +68,6 @@ int		*get_top_value(t_list *tail);
 int		compare_top_two(t_list *tail);
 int		cmp_btm(t_list *tail);
 void	delete_list(t_list **tail);
-
 int		push_top(t_list **dest, t_list **src);
 int		push_a(t_list **dest, t_list **src);
 int		push_b(t_list **dest, t_list **src);
@@ -81,7 +78,6 @@ int		rotate_b(t_list **b, int forced);
 int		rev_rotate_a(t_list **a, t_list **b, int forced);
 int		rev_rotate_b(t_list **b, int forced);
 int		check_sorted(t_list **tail);
-
 void	swap_start(t_list **tail);
 t_list	*rotate_list(t_list *tail);
 t_list	*rev_rotate_list(t_list *tail);
@@ -93,9 +89,8 @@ int		find_min_max_pos(t_list *tail);
 int		get_rotate_count(t_list *list);
 int		get_rev_rotate_count(t_list *list);
 int		rotate_count(int total_count, int max_p, int min_p);
-void	update_checks(min_check_vals *cv, t_list *tail, int count, int first_found);
-void	update_check_vals(min_check_vals *cv, t_list *tail);
-
+void	update_checks(t_min_checks *cv, t_list *t, int count, int first_found);
+void	update_check_vals(t_min_checks *cv, t_list *tail);
 void	sort_algo(t_list **tail);
 void	populate_b(t_list **a, t_list **b);
 void	sort_algo_3(t_list **a);
