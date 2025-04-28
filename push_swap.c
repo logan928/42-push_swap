@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 int		validate_list(int argc, char *argv[], t_list **tail);
 int		validate_int(char *arg_str);
@@ -30,7 +29,8 @@ int	main(int argc, char *argv[])
 	if (!tail)
 		return (1);
 	tail -> next = NULL;
-
+	algo_select(argc, argv, tail, &exit_code);
+	/*
 	if (validate_list(argc, argv, &tail) == 1)
 	{
 		if (check_sorted(&tail) != 1)
@@ -45,7 +45,7 @@ int	main(int argc, char *argv[])
 		}
 		exit_code = 0;
 	}
-	//print_list(tail);
+	*/
 	delete_list(&tail);
 	return (exit_code);
 }
@@ -130,7 +130,7 @@ t_list	*init_cll(t_list **tail, int num)
 	return (*tail);
 }
 
-
+/*
 void print_list(t_list *tail)
 {	t_list *temp;
 
@@ -148,4 +148,4 @@ void print_list(t_list *tail)
 	printf("\n");
 
 }
-
+*/

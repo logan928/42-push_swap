@@ -70,7 +70,6 @@ int		*get_top_value(t_list *tail);
 int		compare_top_two(t_list *tail);
 int		cmp_btm(t_list *tail);
 void	delete_list(t_list **tail);
-void	optimize_a(t_list **a, t_list **b);
 
 int		push_top(t_list **dest, t_list **src);
 int		push_a(t_list **dest, t_list **src);
@@ -97,12 +96,9 @@ int		rotate_count(int total_count, int max_p, int min_p);
 void	update_checks(min_check_vals *cv, t_list *tail, int count, int first_found);
 void	update_check_vals(min_check_vals *cv, t_list *tail);
 
-void		sort_algo(t_list **tail);
+void	sort_algo(t_list **tail);
 void	populate_b(t_list **a, t_list **b);
-int		insert_back(t_list **a, t_list **b, int *a_min, int *a_max);
 void	sort_algo_3(t_list **a);
 void	sort_algo_5(t_list **a);
-
-void	print_list(t_list *tail);
-
+void	algo_select(int argc, char **argv, t_list *tail, int *exit_code);
 #endif

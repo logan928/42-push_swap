@@ -13,7 +13,6 @@
 #include "push_swap.h"
 
 void	populate_b(t_list **a, t_list **b);
-void	sequence_a(t_list **a, t_list **b);
 int		rotate_count(int total_count, int max_p, int min_p);
 
 void	min_to_top(t_list **tail, t_list **tail_b)
