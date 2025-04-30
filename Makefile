@@ -14,9 +14,10 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-NAME = push_swap.a
+NAME = push_swap
 
 SRC = \
+	push_swap.c	\
 	algo_5.c	\
 	cll_find_min_max.c	\
 	cll_shrink.c	\
@@ -29,13 +30,13 @@ SRC = \
 	secondalgo.c	\
 	cll_comparisons.c	\
 	cll_operations.c	\
-	list_op_rotations.c	\
-	push_swap.c
+	list_op_rotations.c
+	
 
 OBJ = $(SRC:.c=.o)
 
 $(NAME): $(OBJ)
-	@ar rcs $(NAME) $(OBJ)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 	@echo "push_swap.a created!"
 
 all: $(NAME)

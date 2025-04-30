@@ -32,7 +32,7 @@ void	push_mins(t_list **a, t_list **b)
 			while (rotate-- > -1)
 				rev_rotate_a(a, b, 1);
 		}
-		push_b(&b, a);
+		push_b(b, a);
 	}
 }
 

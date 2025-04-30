@@ -53,7 +53,7 @@ int	validate_list(int argc, char *argv[], t_list **tail)
 			*tail = init_cll(tail, num);
 		else
 		{
-			printf ("Error\n");
+			ft_printf ("Error\n");
 			return (0);
 		}
 		i++;
