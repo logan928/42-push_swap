@@ -58,16 +58,20 @@ t_list	*cll_delete_top(t_list *tail)
 void	delete_list(t_list **tail)
 {
 	t_list	*temp;
+	int		count;
+	int		i;
 
 	if (!(*tail) || !((*tail)-> next))
 		return ;
-	temp = (*tail)-> next;
-	while (temp != *tail)
+	count = (*tail)-> tail_count;
+	i = 1;
+	while (i < count)
 	{
+		temp = (*tail)-> next;
 		(*tail)-> next = temp -> next;
 		free (temp);
 		temp = NULL;
-		temp = (*tail)-> next;
+		i++;
 	}
 	free (*tail);
 	*tail = NULL;

@@ -17,7 +17,6 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = push_swap
 
 SRC = \
-	push_swap.c	\
 	algo_5.c	\
 	cll_find_min_max.c	\
 	cll_shrink.c	\
@@ -30,8 +29,8 @@ SRC = \
 	secondalgo.c	\
 	cll_comparisons.c	\
 	cll_operations.c	\
-	list_op_rotations.c
-	
+	list_op_rotations.c	\
+	push_swap.c
 
 OBJ = $(SRC:.c=.o)
 

@@ -67,7 +67,6 @@ t_list	*cll_delete_top(t_list *tail);
 int		*get_top_value(t_list *tail);
 int		compare_top_two(t_list *tail);
 int		cmp_btm(t_list *tail);
-void	delete_list(t_list **tail);
 int		push_top(t_list **dest, t_list **src);
 int		push_a(t_list **dest, t_list **src);
 int		push_b(t_list **dest, t_list **src);
@@ -95,5 +94,6 @@ void	sort_algo(t_list **tail);
 void	populate_b(t_list **a, t_list **b);
 void	sort_algo_3(t_list **a);
 void	sort_algo_5(t_list **a);
-void	algo_select(int argc, char **argv, t_list *tail, int *exit_code);
+void	algo_select(int argc, char **argv, t_list **tail, int *exit_code);
+int		validate_list(int argc, char *argv[], t_list **tail);
 #endif

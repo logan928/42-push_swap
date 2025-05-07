@@ -88,19 +88,19 @@ void	sort_algo_5(t_list **a)
 	}
 }
 
-void	algo_select(int argc, char **argv, t_list *tail, int *exit_code)
+void	algo_select(int argc, char **argv, t_list **tail, int *exit_code)
 {
-	if (validate_list(argc, argv, &tail) == 1)
+	if (validate_list(argc, argv, tail) == 1)
 	{
-		if (check_sorted(&tail) != 1)
+		if (check_sorted(tail) != 1)
 		{
-			find_min_max_pos(tail);
-			if (tail -> tail_count <= 3)
-				sort_algo_3(&tail);
-			else if (tail -> tail_count <= 5)
-				sort_algo_5(&tail);
+			find_min_max_pos(*tail);
+			if ((*tail)-> tail_count <= 3)
+				sort_algo_3(tail);
+			else if ((*tail)-> tail_count <= 5)
+				sort_algo_5(tail);
 			else
-				sort_algo(&tail);
+				sort_algo(tail);
 		}
 		exit_code = 0;
 	}
